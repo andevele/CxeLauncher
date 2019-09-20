@@ -7,20 +7,19 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import com.cxel.launcher.util.Constant;
-
 import org.evilbinary.tv.widget.BorderView;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewGroup mainContainer;
+    private BorderView border;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
     private void initViews(){
-        BorderView border = new BorderView(this);
+        border = new BorderView(this);
         border.setBackgroundResource(R.drawable.border_highlight);
         mainContainer = (ViewGroup) findViewById(R.id.list);
         border.attachTo(mainContainer);
@@ -37,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < mainContainer.getChildCount();i++) {
             mainContainer.getChildAt(i).setOnClickListener(new ViewClickListener());
         }
+
+        initInputSourceView();
+    }
+
+    private void initInputSourceView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.input_source_RecyclerView);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,1);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setFocusable(false);
+        border.attachTo(recyclerView);
+        CreateSourceData(recyclerView,R.layout.input_soure_list_item);
     }
 
     class ViewClickListener implements View.OnClickListener {
@@ -93,4 +104,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void CreateSourceData(RecyclerView recyclerView,int layoutId) {
+
+    }
 }
