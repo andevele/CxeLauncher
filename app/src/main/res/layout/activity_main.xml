@@ -36,9 +36,10 @@
 
             <org.evilbinary.tv.widget.RoundedFrameLayout
                 android:id="@+id/view_first"
-                android:layout_width="265dp"
+                android:layout_width="245dp"
                 android:layout_height="303dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
                 android:focusable="true"
                 app:radius="4dp">
 
@@ -54,7 +55,7 @@
                 android:layout_width="265dp"
                 android:layout_height="303dp"
                 android:layout_alignTop="@+id/view_first"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@+id/view_first"
                 android:focusable="true"
                 app:radius="4dp">
@@ -71,7 +72,7 @@
                 android:layout_width="265dp"
                 android:layout_height="303dp"
                 android:layout_alignTop="@+id/view_first"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_toEndOf="@+id/view_youtube"
                 android:focusable="true"
                 app:radius="4dp">
@@ -88,7 +89,6 @@
                 android:layout_width="265dp"
                 android:layout_height="303dp"
                 android:layout_alignTop="@+id/view_first"
-                android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@+id/view_netflix"
                 android:focusable="true"
                 app:radius="4dp">
@@ -98,6 +98,76 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg_main_hotstar" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_tvstore"
+                android:layout_width="245dp"
+                android:layout_height="160dp"
+                android:layout_below="@+id/view_first"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_tvstore" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_wirelessdisplay"
+                android:layout_width="265dp"
+                android:layout_height="160dp"
+                android:layout_below="@+id/view_youtube"
+                android:layout_alignTop="@+id/view_tvstore"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@+id/view_tvstore"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_wirelessdisplay" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_primevideo"
+                android:layout_width="265dp"
+                android:layout_height="160dp"
+                android:layout_below="@+id/view_netflix"
+                android:layout_alignTop="@+id/view_wirelessdisplay"
+                android:layout_marginEnd="20dp"
+                android:layout_toEndOf="@+id/view_wirelessdisplay"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_primevideo" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_apps"
+                android:layout_width="265dp"
+                android:layout_height="160dp"
+                android:layout_below="@+id/view_hotstar"
+                android:layout_alignTop="@+id/view_primevideo"
+                android:layout_toEndOf="@+id/view_primevideo"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_apps" />
             </org.evilbinary.tv.widget.RoundedFrameLayout>
         </org.evilbinary.tv.widget.TvZorderRelativeLayout>
 
