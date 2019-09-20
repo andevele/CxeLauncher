@@ -19,27 +19,10 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/view_first"
-        android:layout_width="245dp"
-        android:layout_height="303dp"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/input_source_RecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:clipToPadding="false"
-            android:focusable="false"
-            android:paddingBottom="80dp" />
-
-    </LinearLayout>
-
-
     <org.evilbinary.tv.widget.TvHorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <org.evilbinary.tv.widget.TvZorderRelativeLayout
             android:id="@+id/list"
@@ -67,6 +50,26 @@
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/bg_main_youtube" />
                         </org.evilbinary.tv.widget.RoundedFrameLayout>-->
+
+            <LinearLayout
+                android:id="@+id/view_first"
+                android:layout_width="245dp"
+                android:layout_height="303dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:focusable="true"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/input_source_RecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:clipToPadding="false"
+                    android:focusable="false"
+                    android:paddingBottom="80dp" />
+
+            </LinearLayout>
 
             <org.evilbinary.tv.widget.RoundedFrameLayout
                 android:id="@+id/view_youtube"

@@ -13,8 +13,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.cxel.launcher.adapter.InputSourceAdapter;
 import com.cxel.launcher.util.Constant;
 import org.evilbinary.tv.widget.BorderView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -105,6 +110,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void CreateSourceData(RecyclerView recyclerView,int layoutId) {
-
+        List<String> data = new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
+        list.add(0,"ATV");
+        list.add(1,"AV1");
+        list.add(2,"AV2");
+        list.add(3,"HDMI1");
+        list.add(4,"HDMI2");
+        list.add(5,"VGA");
+        list.add(6,"MEDIA");
+        data.addAll(list);
+        InputSourceAdapter adapter = new InputSourceAdapter(getApplicationContext(), data,layoutId);
+        recyclerView.setAdapter(adapter);
+        recyclerView.scrollToPosition(0);
     }
 }
