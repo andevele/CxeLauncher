@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:clipChildren="false"
+    android:focusable="false"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="" />
+
+    </LinearLayout>
+
+    <org.evilbinary.tv.widget.TvHorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <org.evilbinary.tv.widget.TvZorderRelativeLayout
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:clipToPadding="false"
+            android:focusable="false"
+            android:gravity="center"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp">
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_first"
+                android:layout_width="265dp"
+                android:layout_height="303dp"
+                android:layout_marginEnd="10dp"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_youtube" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_youtube"
+                android:layout_width="265dp"
+                android:layout_height="303dp"
+                android:layout_alignTop="@+id/view_first"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/view_first"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_youtube" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_netflix"
+                android:layout_width="265dp"
+                android:layout_height="303dp"
+                android:layout_alignTop="@+id/view_first"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/view_youtube"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_netflix" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+
+            <org.evilbinary.tv.widget.RoundedFrameLayout
+                android:id="@+id/view_hotstar"
+                android:layout_width="265dp"
+                android:layout_height="303dp"
+                android:layout_alignTop="@+id/view_first"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/view_netflix"
+                android:focusable="true"
+                app:radius="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_main_hotstar" />
+            </org.evilbinary.tv.widget.RoundedFrameLayout>
+        </org.evilbinary.tv.widget.TvZorderRelativeLayout>
+
+    </org.evilbinary.tv.widget.TvHorizontalScrollView>
+
+
+</LinearLayout>
