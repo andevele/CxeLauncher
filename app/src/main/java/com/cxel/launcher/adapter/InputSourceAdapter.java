@@ -2,6 +2,7 @@ package com.cxel.launcher.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
     }
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        //Log.d("zhulf","===viewType: " + viewType);
         View view = LayoutInflater.from(context).inflate(layoutId,parent,false);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;

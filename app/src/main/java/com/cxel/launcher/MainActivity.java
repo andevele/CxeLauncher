@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
 import android.view.ViewGroup;
 import com.cxel.launcher.adapter.InputSourceAdapter;
@@ -65,22 +66,20 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            if(view == mainContainer.getChildAt(Constant.INPUT_SOURCE_INDEX)) {
-                launchApp("com.ydg.tvplayer");
-            } else if(view == mainContainer.getChildAt(Constant.YOUTUBE_INDEX)) {
+            if(view == mainContainer.getChildAt(Constant.YOUTUBE_INDEX)) {
                 launchApp("com.google.android.youtube.tv");
             } else if(view == mainContainer.getChildAt(Constant.NETFLIX_INDEX)) {
                 launchApp("com.netflix.mediaclient");
             } else if(view == mainContainer.getChildAt(Constant.HOTSTAR_INDEX)) {
                 launchApp("in.startv.hotstar");
-            } else if(view == mainContainer.getChildAt(Constant.TV_STORE_INDEX)) {
-                launchApp("cm.aptoidetv.pt");
             } else if(view == mainContainer.getChildAt(Constant.WIRELESS_DISPLAY_INDEX)) {
                 launchApp("com.toptech.mitv.wfd");
             } else if(view == mainContainer.getChildAt(Constant.PRIME_VIDEO_INDEX)) {
                 launchApp("com.amazon.avod.thirdpartyclient");
             } else if(view == mainContainer.getChildAt(Constant.APPS_INDEX)) {
                 //launchApp("");
+            } else if(view.getId() == R.id.view_tvstore) {
+                launchApp("cm.aptoidetv.pt");
             }
         }
     }
