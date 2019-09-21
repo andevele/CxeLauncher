@@ -2,14 +2,11 @@ package com.cxel.launcher.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.cxel.launcher.R;
-
 import java.util.List;
 
 public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.CustomViewHolder> {

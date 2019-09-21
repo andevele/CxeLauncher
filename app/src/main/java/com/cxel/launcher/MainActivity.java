@@ -10,16 +10,13 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.cxel.launcher.adapter.InputSourceAdapter;
 import com.cxel.launcher.util.Constant;
 import org.evilbinary.tv.widget.BorderView;
 import org.evilbinary.tv.widget.RoundedFrameLayout;
 import org.evilbinary.tv.widget.TvZorderRelativeLayout;
-
 import java.util.ArrayList;
 import java.util.List;
 
