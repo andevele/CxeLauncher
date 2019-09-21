@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import com.cxel.launcher.adapter.InputSourceAdapter;
 import com.cxel.launcher.util.Constant;
 import org.evilbinary.tv.widget.BorderView;
+import org.evilbinary.tv.widget.RoundedFrameLayout;
+import org.evilbinary.tv.widget.TvZorderRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +40,18 @@ public class MainActivity extends AppCompatActivity {
         mainContainer = (ViewGroup) findViewById(R.id.list);
         border.attachTo(mainContainer);
 
+        ViewClickListener listener = new ViewClickListener();
         for(int i = 0; i < mainContainer.getChildCount();i++) {
-            mainContainer.getChildAt(i).setOnClickListener(new ViewClickListener());
+            mainContainer.getChildAt(i).setOnClickListener(listener);
         }
 
+        TvZorderRelativeLayout tvstoreContainer = (TvZorderRelativeLayout)findViewById(R.id.view_tvstore_container);
+        border.attachTo(tvstoreContainer);
+        RoundedFrameLayout tvstore = (RoundedFrameLayout)findViewById(R.id.view_tvstore);
+        tvstore.setOnClickListener(listener);
+
         initInputSourceView();
+
     }
 
     private void initInputSourceView() {
