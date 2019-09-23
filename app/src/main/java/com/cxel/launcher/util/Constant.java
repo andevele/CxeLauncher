@@ -10,4 +10,7 @@ public class Constant {
 
     public static final int TV_STORE_INDEX = 6;
 
+    public static final String INPUT_SOURCE_JSON_FILE = "/data/inputSource.json";
+    public static final String INPUT_SOURCE_SECTION = "inputsource";
+
 }

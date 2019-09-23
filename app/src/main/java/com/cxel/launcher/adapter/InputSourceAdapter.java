@@ -20,10 +20,11 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
         this.dataSource = dataSource;
         this.layoutId = layoutId;
     }
+
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Log.d("zhulf","===viewType: " + viewType);
-        View view = LayoutInflater.from(context).inflate(layoutId,parent,false);
+        View view = LayoutInflater.from(context).inflate(layoutId, parent, false);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
     }
@@ -42,9 +43,10 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
 
     static class CustomViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
+
         public CustomViewHolder(View itemView) {
             super(itemView);
-            mTextView = (TextView)itemView.findViewById(R.id.textView);
+            mTextView = (TextView) itemView.findViewById(R.id.textView);
         }
     }
 }
