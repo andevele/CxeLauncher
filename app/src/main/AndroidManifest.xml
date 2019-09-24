@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cxel.launcher">
 
+    <uses-permission android:name="com.mstar.android.permissionn.ACCESS_TV_DATA" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"

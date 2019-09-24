@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 解析通道数据
+ */
 public class DataAsyncTask extends AsyncTask<String, Void, List<String>> {
     private static final String TAG = "DataAnyscTask";
     private DataTask task;

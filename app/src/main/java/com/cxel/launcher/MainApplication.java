@@ -1,19 +1,26 @@
 package com.cxel.launcher;
 
 import android.app.Application;
-
+import android.content.Context;
 import com.cxel.launcher.data.DataAsyncTask;
 import com.cxel.launcher.util.Constant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * apk主Application
+ */
 public class MainApplication extends Application {
     Map<String, List<String>> dataMap = new HashMap<String, List<String>>();
+    private static Context context = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        context = getApplicationContext();
         DataAsyncTask dataAsyncTask = new DataAsyncTask();
         dataAsyncTask.setDataTask(new DataAsyncTask.DataTask() {
             @Override
@@ -31,5 +38,9 @@ public class MainApplication extends Application {
 
     public Map<String, List<String>> getDataMap() {
         return dataMap;
+    }
+
+    public static Context getContext() {
+        return context;
     }
 }

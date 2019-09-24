@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import com.cxel.launcher.adapter.InputSourceAdapter;
+import com.cxel.launcher.control.ControlManager;
 import com.cxel.launcher.data.DataAsyncTask;
 import com.cxel.launcher.util.Constant;
 import com.cxel.launcher.view.RecycleViewItemDivider;
@@ -26,6 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 主Activity
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ViewGroup mainContainer;
@@ -60,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initInputSourceView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.input_source_RecyclerView);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, 1,false);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setFocusable(false);
@@ -97,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
             intent = getApplicationContext().getPackageManager().getLaunchIntentForPackage(packageName);
             if (intent != null) {
                 intent.setPackage(null);
-                MainActivity.this.startActivity(intent);
+                //MainActivity.this.startActivity(intent);
+                ControlManager.getInstance().startActivity(intent);
             }
         } else {
             goToMarket(MainActivity.this, packageName);
@@ -162,11 +169,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void updateList(RecyclerView recyclerView, List<String> dataList, int layoutId) {
+    private void updateList(RecyclerView recyclerView, final List<String> dataList, int layoutId) {
         InputSourceAdapter adapter = new InputSourceAdapter(getApplicationContext(), dataList, layoutId);
         recyclerView.setAdapter(adapter);
         recyclerView.scrollToPosition(0);
         adapter.notifyDataSetChanged();
+        adapter.setOnItemClickListener(new InputSourceAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int layoutPos) {
+                ControlManager.getInstance().switchSource(layoutPos,dataList);
+            }
+        });
     }
-
 }
