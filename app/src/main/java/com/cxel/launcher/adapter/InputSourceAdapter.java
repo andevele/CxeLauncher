@@ -5,8 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.cxel.launcher.R;
+import com.cxel.launcher.util.Constant;
+
 import java.util.List;
 
 /**
@@ -45,6 +48,29 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
     @Override
     public void onBindViewHolder(final CustomViewHolder viewHolder, int position) {
         viewHolder.mTextView.setText(dataSource.get(position));
+        String sourceName = dataSource.get(position);
+        switch (sourceName) {
+            case Constant.INPUT_SOURCE_NAME_ATV:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_atv);
+                break;
+            case Constant.INPUT_SOURCE_NAME_DTV:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_dtv);
+                break;
+            case Constant.INPUT_SOURCE_NAME_AV1:
+            case Constant.INPUT_SOURCE_NAME_AV2:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_av);
+                break;
+            case Constant.INPUT_SOURCE_NAME_HDMI1:
+            case Constant.INPUT_SOURCE_NAME_HDMI2:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_hdmi);
+                break;
+            case Constant.INPUT_SOURCE_NAME_VGA:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_vga);
+                break;
+                default:
+                    break;
+
+        }
         viewHolder.itemView.setTag(position);
         if(onItemClickListener == null) {
             return;
@@ -65,11 +91,13 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
     }
 
     static class CustomViewHolder extends RecyclerView.ViewHolder {
+        private ImageView mSourceIcon;
         public TextView mTextView;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.textView);
+            mSourceIcon = (ImageView)itemView.findViewById(R.id.imageView);
         }
     }
 }

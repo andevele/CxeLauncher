@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CxeLauncher</string>
+    <string name="home_label">Home</string>
 </resources>
