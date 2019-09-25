@@ -63,7 +63,7 @@ public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpd
     public void onUpdateNetworkConnectivity(Bundle newConnectivity) {
         int mCurrentInterfaceId = newConnectivity.getInt(NetworkMonitor.KEY_NET_INTERFACE_ID, NetworkMonitor.ID_INTERFACE_ETHERNET);
         final int statusId = newConnectivity.getInt(NetworkMonitor.KEY_NET_STATUS_ID, NetworkMonitor.ID_STATUS_DISCONNECTED);
-        Log.v("zhulf", "mCurrentInterfaceId:" + mCurrentInterfaceId + " statusId:" + statusId);
+        //Log.v(TAG, "mCurrentInterfaceId:" + mCurrentInterfaceId + " statusId:" + statusId);
         switch (mCurrentInterfaceId) {
             case NetworkMonitor.ID_INTERFACE_ETHERNET:
                 switch (statusId) {

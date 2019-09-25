@@ -39,7 +39,6 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
 
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //Log.d("zhulf","===viewType: " + viewType);
         View view = LayoutInflater.from(context).inflate(layoutId, parent, false);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;

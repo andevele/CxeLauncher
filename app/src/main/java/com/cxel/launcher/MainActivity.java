@@ -50,20 +50,11 @@ public class MainActivity extends AppCompatActivity {
     private NetworkMonitor mNetworkMonitor;
     private TopBar topBar;
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-        }
-    };
-
     private BroadcastReceiver mStorageReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            Log.d("zhulf", "======action: " + action);
             topBar.updateView(action);
         }
     };
