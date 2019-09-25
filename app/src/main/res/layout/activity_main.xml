@@ -7,7 +7,11 @@
     android:focusable="false"
     android:orientation="vertical">
 
-    <include layout="@layout/top_bar" />
+    <com.cxel.launcher.view.TopBar
+        android:id="@+id/topbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:clipChildren="false" />
 
     <include layout="@layout/middle_content" />
 

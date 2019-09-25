@@ -1,10 +1,15 @@
 package com.cxel.launcher;
 
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.hardware.usb.UsbManager;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -15,14 +20,19 @@ import android.support.v7.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.cxel.launcher.adapter.InputSourceAdapter;
 import com.cxel.launcher.control.ControlManager;
 import com.cxel.launcher.data.DataAsyncTask;
+import com.cxel.launcher.net.NetworkMonitor;
 import com.cxel.launcher.util.Constant;
 import com.cxel.launcher.view.RecycleViewItemDivider;
+import com.cxel.launcher.view.TopBar;
+
 import org.evilbinary.tv.widget.BorderView;
 import org.evilbinary.tv.widget.RoundedFrameLayout;
 import org.evilbinary.tv.widget.TvZorderRelativeLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,12 +46,34 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewGroup mainContainer;
     private BorderView border;
+    private NetworkMonitor.INetworkUpdateListener mNetworkUpdateListener;
+    private NetworkMonitor mNetworkMonitor;
+    private TopBar topBar;
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+        }
+    };
+
+    private BroadcastReceiver mStorageReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            Log.d("zhulf", "======action: " + action);
+            topBar.updateView(action);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        initTopBars();
     }
 
     private void initViews() {
@@ -64,9 +96,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void initTopBars() {
+        topBar = (TopBar) findViewById(R.id.topbar_container);
+        mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
+        mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        filter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        registerReceiver(mStorageReceiver, filter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mNetworkMonitor.startMonitor();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mNetworkMonitor.stopMonitor();
+    }
+
     private void initInputSourceView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.input_source_RecyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, 1,false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, 1, false);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setFocusable(false);
@@ -177,8 +234,14 @@ public class MainActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new InputSourceAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int layoutPos) {
-                ControlManager.getInstance().switchSource(layoutPos,dataList);
+                ControlManager.getInstance().switchSource(layoutPos, dataList);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mStorageReceiver);
     }
 }

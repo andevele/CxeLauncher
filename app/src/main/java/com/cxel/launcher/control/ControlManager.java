@@ -109,4 +109,5 @@ public class ControlManager {
     public void startActivity(Intent intent) {
         MainApplication.getContext().startActivity(intent);
     }
+
 }
