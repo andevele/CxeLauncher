@@ -67,6 +67,9 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
             case Constant.INPUT_SOURCE_NAME_VGA:
                 viewHolder.mSourceIcon.setImageResource(R.drawable.ic_vga);
                 break;
+            case Constant.INPUT_SOURCE_NAME_STORAGE:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_storage);
+                break;
                 default:
                     break;
 
@@ -92,7 +95,7 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
 
     static class CustomViewHolder extends RecyclerView.ViewHolder {
         private ImageView mSourceIcon;
-        public TextView mTextView;
+        private TextView mTextView;
 
         public CustomViewHolder(View itemView) {
             super(itemView);

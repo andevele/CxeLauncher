@@ -7,9 +7,26 @@
     android:clipChildren="false"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:text="" />
+    <TextClock
+        android:id="@+id/time_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="63dp"
+        android:layout_centerVertical="true"
+        android:format24Hour="MM/dd/yyyy \nhh:mm     aa"
+        android:format12Hour="MM/dd/yyyy \nhh:mm     aa"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/network_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="46dp"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/time_label"
+        android:background="@drawable/ic_eth_disconnected"
+        android:scaleType="centerInside" />
+
 
 </RelativeLayout>
