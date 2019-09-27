@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (view == mainContainer.getChildAt(Constant.PRIME_VIDEO_INDEX)) {
                 launchApp("com.amazon.avod.thirdpartyclient");
             } else if (view == mainContainer.getChildAt(Constant.APPS_INDEX)) {
-                //launchApp("");
+                startActivity("com.cxel.launcher.action.AllAppsAdapter");
             } else if (view.getId() == R.id.view_tvstore) {
                 launchApp("cm.aptoidetv.pt");
             }
@@ -157,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             goToMarket(MainActivity.this, packageName);
         }
+    }
+
+    private void startActivity(String action) {
+        ControlManager.getInstance().startActivity(action);
     }
 
     public static boolean isAppInstalled(Context context, String packageName) {

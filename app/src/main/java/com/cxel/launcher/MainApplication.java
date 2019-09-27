@@ -2,8 +2,12 @@ package com.cxel.launcher;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
+
+import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.data.DataAsyncTask;
 import com.cxel.launcher.util.Constant;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +24,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.d("zhulf", "===MainApplication===");
         context = getApplicationContext();
         DataAsyncTask dataAsyncTask = new DataAsyncTask();
         dataAsyncTask.setDataTask(new DataAsyncTask.DataTask() {
@@ -34,6 +39,7 @@ public class MainApplication extends Application {
             }
         });
         dataAsyncTask.execute(Constant.INPUT_SOURCE_JSON_FILE, Constant.INPUT_SOURCE_SECTION);
+        AppData.getInstance().catchAppInfo();
     }
 
     public Map<String, List<String>> getDataMap() {

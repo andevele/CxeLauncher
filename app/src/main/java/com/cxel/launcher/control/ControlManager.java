@@ -100,7 +100,7 @@ public class ControlManager {
         startActivity("com.mstar.android.intent.action.START_MEDIA_BROWSER");
     }
 
-    private void startActivity(String action) {
+    public void startActivity(String action) {
         Intent intent = new Intent(action);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         startActivity(intent);
