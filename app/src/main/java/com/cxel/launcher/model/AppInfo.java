@@ -8,6 +8,7 @@ public class AppInfo {
     private Drawable appIcon;
     private String appName;
     private String packageName;
+    private String activityName;
 
     public AppInfo() {
         this.appIcon = null;
@@ -55,4 +56,11 @@ public class AppInfo {
         this.index = index;
     }
 
+    public void setActivityName(String name) {
+        this.activityName = name;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
 }

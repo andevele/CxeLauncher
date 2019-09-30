@@ -9,11 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.cxel.launcher.AppsActivity;
 import com.cxel.launcher.R;
+import com.cxel.launcher.base.DataInterface;
+import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
 import java.util.List;
 
-public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHolder> {
+public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHolder> implements DataInterface.AppTaskCallBack{
 
     private View mView;
     private List<AppInfo> mlist;
@@ -26,6 +30,7 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
     public AllAppsAdapter(Context context, List<AppInfo> list) {
         this.mlist = list;
         this.mContext = context;
+        AppData.getInstance().setCallBack(this);
     }
 
     @NonNull
@@ -66,6 +71,24 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
     @Override
     public int getItemCount() {
         return mlist.size();
+    }
+
+    @Override
+    public void onAppInfoAdded(int size) {
+        //this.notifyDataSetChanged();
+        this.notifyItemInserted(size);
+        //((AppsActivity)mContext).updateViews();
+    }
+
+    @Override
+    public void onAppInfoRemoved(int size) {
+        //this.notifyItemRemoved(size);
+        this.notifyDataSetChanged();
+    }
+
+    public void updateData(List<AppInfo> list) {
+        this.mlist = list;
+        this.notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {

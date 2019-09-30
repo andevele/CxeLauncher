@@ -5,14 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import com.cxel.launcher.adapter.AllAppsAdapter;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
 import com.cxel.launcher.view.CustomDecoration;
-
 import org.evilbinary.tv.widget.BorderView;
-
+import org.evilbinary.tv.widget.TvGridLayoutManagerScrolling;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,23 +36,36 @@ public class AppsActivity extends AppCompatActivity {
         if (appInfoList == null || appInfoList.size() < 1) {
             appInfoList = AppData.getInstance().catchAppInfo();
         }
+        appList = appInfoList;
         allAppsAdapter = new AllAppsAdapter(this, appInfoList);
-        gridLayoutManager = new GridLayoutManager(this, spanCount);
+        gridLayoutManager = new TvGridLayoutManagerScrolling(this, spanCount);
     }
 
     private void initView() {
         border = new BorderView(this);
         border.setBackgroundResource(R.drawable.border_highlight);
         appRecyclerView = (RecyclerView) findViewById(R.id.apps_list);
+        gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         appRecyclerView.setLayoutManager(gridLayoutManager);
         appRecyclerView.addItemDecoration(new CustomDecoration());
-        appRecyclerView.setAdapter(allAppsAdapter);
+        appRecyclerView.setFocusable(false);
         border.attachTo(appRecyclerView);
+        appRecyclerView.setAdapter(allAppsAdapter);
+        appRecyclerView.scrollToPosition(0);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        List<AppInfo> appInfoList = AppData.getInstance().getAppInfo();
+        if (appInfoList == null || appInfoList.size() < 1) {
+            appInfoList = AppData.getInstance().catchAppInfo();
+        }
+        allAppsAdapter.updateData(appInfoList);
+    }
+
+    public void updateViews() {
+        appRecyclerView.scrollToPosition(0);
     }
 
     @Override

@@ -37,11 +37,11 @@ public class CustomDecoration extends RecyclerView.ItemDecoration {
             outRect.left = 15;
             outRect.right = 0;
         }
-        if(visualPos - 4 < 0) {
-            outRect.top = 0;
-        } else {
-            outRect.top = 20;
-        }
+//        if(visualPos - 4 < 0) {
+//            outRect.top = 20;
+//        } else {
+//            outRect.top = 20;
+//        }
 
     }
 }

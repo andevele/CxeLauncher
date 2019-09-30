@@ -2,8 +2,8 @@ package com.cxel.launcher.base;
 
 public class DataInterface {
     public interface AppTaskCallBack {
-        public void onAppInfoObtainedSuccess();
+        public void onAppInfoAdded(int size);
 
-        public void onAppInfoObtainedFailed();
+        public void onAppInfoRemoved(int size);
     }
 }

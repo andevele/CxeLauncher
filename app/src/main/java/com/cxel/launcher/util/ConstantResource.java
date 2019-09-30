@@ -40,4 +40,10 @@ public class ConstantResource {
         public static final int WIRE_DISCONNECTED = 6;
         public static final int WIRE_UNREACHABLE = 7;
     }
+
+    public static final int OP_NONE = 0;
+    public static final int OP_ADD = 1;
+    public static final int OP_UPDATE = 2;
+    public static final int OP_REMOVE = 3; // uninstlled
+    public static final int OP_UNAVAILABLE = 4; // external media unmounted
 }

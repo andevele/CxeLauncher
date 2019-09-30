@@ -1,14 +1,16 @@
 package com.cxel.launcher.data;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
 
 import com.cxel.launcher.MainApplication;
-import com.cxel.launcher.base.DataInterface;
+import com.cxel.launcher.adapter.AllAppsAdapter;
 import com.cxel.launcher.model.AppInfo;
 import com.cxel.launcher.thread.AppExecutors;
+import com.cxel.launcher.util.ConstantResource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,13 +19,20 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
-public class AppData implements DataInterface.AppTaskCallBack {
+public class AppData {
     private static final String TAG = "AppData";
     private static AppData INSTANCE = null;
+    private final Context mContext;
+    private final PackageManager packageManager;
     private AppExecutors appExecutors;
     private List<AppInfo> appInfoList = new ArrayList<AppInfo>();
+    private int opt;
+    private String[] packages;
+    private AllAppsAdapter callBack;
 
     public AppData() {
+        mContext = MainApplication.getContext();
+        packageManager = MainApplication.getContext().getPackageManager();
         if (appExecutors == null) {
             appExecutors = new AppExecutors();
         }
@@ -42,7 +51,6 @@ public class AppData implements DataInterface.AppTaskCallBack {
         appExecutors.diskIO().submit(futureTask);
         try {
             list = futureTask.get();
-            Log.d("zhulf", "===size: " + list.size());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -56,14 +64,69 @@ public class AppData implements DataInterface.AppTaskCallBack {
         return appInfoList;
     }
 
-    @Override
-    public void onAppInfoObtainedSuccess() {
+    public void updateData(int op, String[] pkgs) {
+        this.opt = op;
+        this.packages = pkgs;
+        final int N = packages.length;
+        switch (opt) {
+            case ConstantResource.OP_ADD:
+                for (int i = 0; i < N; i++) {
+                    Log.d("zhulf", "===addPackage " + packages[i]);
+                    addPackage(mContext, packages[i]);
+                }
+                break;
+            case ConstantResource.OP_UPDATE:
+                for (int i = 0; i < N; i++) {
+                    Log.d("zhulf", "====updatePackage " + packages[i]);
 
+                }
+                break;
+            case ConstantResource.OP_REMOVE:
+            case ConstantResource.OP_UNAVAILABLE:
+                for (int i = 0; i < N; i++) {
+                    Log.d("zhulf", "====removePackage " + packages[i]);
+                    removePackage(packages[i]);
+                }
+                break;
+        }
     }
 
-    @Override
-    public void onAppInfoObtainedFailed() {
+    private void addPackage(Context mContext, String packageName) {
+        List<ResolveInfo> list = findActivitiesForPackage(mContext, packageName);
+        List<AppInfo> newAppList = new ArrayList<AppInfo>();
+        if (list.size() > 0) {
+            for (ResolveInfo info : list) {
+                AppInfo appInfo = new AppInfo();
+                appInfo.setAppIcon(info.loadIcon(packageManager));
+                appInfo.setAppName((String) info.loadLabel(packageManager));
+                appInfo.setPackageName(info.activityInfo.packageName);
+                addApps(appInfo);
+            }
+        }
+    }
 
+    private void addApps(AppInfo appInfo) {
+        if (findActivity(appInfoList, appInfo)) {
+            return;
+        }
+        appInfoList.add(appInfo);
+        callBack.onAppInfoAdded(appInfoList.size());
+    }
+
+    private void removePackage(String packageName) {
+        final List<AppInfo> data = appInfoList;
+        for (int i = data.size() - 1; i >= 0; i--) {
+            AppInfo info = data.get(i);
+            final String pkgName = info.getPackageName();
+            if(packageName.equals(pkgName)) {
+                appInfoList.remove(i);
+            }
+        }
+        callBack.onAppInfoRemoved(appInfoList.size());
+    }
+
+    public void setCallBack(AllAppsAdapter allAppsAdapter) {
+        this.callBack = allAppsAdapter;
     }
 
     class AppThread implements Runnable {
@@ -97,6 +160,7 @@ public class AppData implements DataInterface.AppTaskCallBack {
 
         @Override
         public List<AppInfo> call() throws Exception {
+            appInfoList.clear();
             ArrayList<AppInfo> appInfos = new ArrayList<AppInfo>();
             PackageManager manager = MainApplication.getContext().getPackageManager();
             Intent mainIntent = new Intent("android.intent.action.MAIN", null);
@@ -118,5 +182,27 @@ public class AppData implements DataInterface.AppTaskCallBack {
             }
             return appInfos;
         }
+    }
+
+    static List<ResolveInfo> findActivitiesForPackage(Context context, String packageName) {
+        final PackageManager packageManager = context.getPackageManager();
+
+        final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        mainIntent.setPackage(packageName);
+
+        final List<ResolveInfo> apps = packageManager.queryIntentActivities(mainIntent, 0);
+        return apps != null ? apps : new ArrayList<ResolveInfo>();
+    }
+
+    private static boolean findActivity(List<AppInfo> apps, AppInfo appsInfo) {
+        final int N = apps.size();
+        for (int i = 0; i < N; i++) {
+            final AppInfo info = apps.get(i);
+            if (info.getPackageName().equals(appsInfo.getPackageName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
