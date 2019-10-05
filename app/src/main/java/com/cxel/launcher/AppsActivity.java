@@ -43,7 +43,8 @@ public class AppsActivity extends AppCompatActivity {
 
     private void initView() {
         border = new BorderView(this);
-        border.setBackgroundResource(R.drawable.border_highlight);
+        //border.setBackgroundResource(R.drawable.border_highlight);
+        border.setBackgroundResource(R.drawable.custom_border);
         appRecyclerView = (RecyclerView) findViewById(R.id.apps_list);
         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         appRecyclerView.setLayoutManager(gridLayoutManager);

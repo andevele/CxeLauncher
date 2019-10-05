@@ -27,14 +27,14 @@ public class CustomDecoration extends RecyclerView.ItemDecoration {
         } else if (parent.getChildAdapterPosition(view) % 4 == 1) {
             //第二列
             outRect.left = 50;
-            outRect.right = 5;
+            outRect.right = 10;
         } else if (parent.getChildAdapterPosition(view) % 4 == 2) {
             //第三列
-            outRect.left = 15;
-            outRect.right = 30;
+            outRect.left = 10;
+            outRect.right = 50;
         } else if (parent.getChildAdapterPosition(view) % 4 == 3) {
             //第四列
-            outRect.left = -10;
+            outRect.left = -30;
             outRect.right = 90;
         }
         if(visualPos - 4 < 0) {
