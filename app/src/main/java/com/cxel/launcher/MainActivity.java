@@ -20,6 +20,7 @@ import android.support.v7.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.cxel.launcher.adapter.InputSourceAdapter;
 import com.cxel.launcher.control.ControlManager;
@@ -68,8 +69,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
+        TextView titleLabel = (TextView)findViewById(R.id.title_label_text);
+        titleLabel.setText(getResources().getString(R.string.home_page));
         border = new BorderView(this);
-        border.setBackgroundResource(R.drawable.border_highlight);
+        //border.setBackgroundResource(R.drawable.border_highlight);
+        border.setBackgroundResource(R.drawable.custom_border);
         mainContainer = (ViewGroup) findViewById(R.id.list);
         border.attachTo(mainContainer);
 

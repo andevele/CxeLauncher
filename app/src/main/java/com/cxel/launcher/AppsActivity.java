@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
+
 import com.cxel.launcher.adapter.AllAppsAdapter;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
@@ -42,6 +44,8 @@ public class AppsActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        TextView titleLabel = (TextView)findViewById(R.id.title_label_text);
+        titleLabel.setText(getResources().getString(R.string.apps_page));
         border = new BorderView(this);
         //border.setBackgroundResource(R.drawable.border_highlight);
         border.setBackgroundResource(R.drawable.custom_border);

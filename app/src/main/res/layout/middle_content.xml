@@ -7,30 +7,17 @@
     android:clipChildren="false"
     android:focusable="false">
 
-    <LinearLayout
-        android:id="@+id/home_label"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="96dp"
-            android:gravity="top"
-            android:text="@string/home_label"
-            android:textColor="@color/white"
-            android:textSize="@dimen/home_label_size"
-            android:textStyle="bold" />
-    </LinearLayout>
+    <include layout="@layout/title_label" />
 
     <LinearLayout
         android:id="@+id/view_first"
         android:layout_width="245dp"
         android:layout_height="303dp"
-        android:layout_below="@+id/home_label"
+        android:layout_below="@+id/title_label_container"
         android:layout_marginStart="90dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:clipChildren="true"
         android:clipToPadding="true"
         android:orientation="vertical">
@@ -49,7 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/view_first"
         android:layout_marginStart="90dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp">
 
         <org.evilbinary.tv.widget.RoundedFrameLayout
@@ -83,7 +69,7 @@
             android:layout_height="303dp"
             android:layout_alignTop="@+id/view_first"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_toEndOf="@+id/view_first"
             android:focusable="true"
             app:radius="4dp">
@@ -133,7 +119,6 @@
             android:layout_width="265dp"
             android:layout_height="160dp"
             android:layout_below="@+id/view_youtube"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:focusable="true"
             app:radius="4dp">
