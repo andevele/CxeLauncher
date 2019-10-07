@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="52dp"
     android:layout_gravity="center"
-    android:background="@color/input_source_item_bg"
-    android:clipChildren="false"
+    android:background="@drawable/bg_source_item_view"
     android:focusable="true"
     android:gravity="center|end"
     android:orientation="horizontal">

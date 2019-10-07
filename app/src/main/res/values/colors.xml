@@ -3,6 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="input_source_item_bg">#003366</color>
+    <color name="input_source_item_bg_color">#003366</color>
     <color name="input_source_item_divide_bg">#336666</color>
 </resources>
