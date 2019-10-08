@@ -65,8 +65,11 @@ public class AppsActivity extends AppCompatActivity {
         appRecyclerView.addItemDecoration(new CustomDecoration());
         appRecyclerView.setFocusable(false);
         border.attachTo(appRecyclerView);
+        allAppsAdapter.setHasStableIds(true);
+        appRecyclerView.setItemAnimator(null);
         appRecyclerView.setAdapter(allAppsAdapter);
         appRecyclerView.scrollToPosition(0);
+
         allAppsAdapter.setOnItemClickListener(new AllAppsAdapter.OnItemClickListener(){
 
             @Override
@@ -90,9 +93,9 @@ public class AppsActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                appRecyclerView.getFocusedChild().setFocusable(true);
+                appRecyclerView.setItemAnimator(null);
             }
-        },10);
+        },0);
     }
 
     @Override

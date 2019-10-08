@@ -3,6 +3,7 @@ package com.cxel.launcher.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,10 +82,15 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
     }
 
     @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
     public void onAppInfoAdded(int size) {
         this.notifyDataSetChanged();
 //        this.notifyItemInserted(size);
-//        ((AppsActivity)mContext).updateViews();
+        //((AppsActivity)mContext).updateViews();
     }
 
     @Override
