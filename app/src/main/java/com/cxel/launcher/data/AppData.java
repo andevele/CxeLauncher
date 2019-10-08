@@ -19,6 +19,11 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 所有app获取的数据类
+ */
 public class AppData {
     private static final String TAG = "AppData";
     private static AppData INSTANCE = null;
@@ -71,20 +76,20 @@ public class AppData {
         switch (opt) {
             case ConstantResource.OP_ADD:
                 for (int i = 0; i < N; i++) {
-                    Log.d("zhulf", "===addPackage " + packages[i]);
+//                    Log.d("zhulf", "===addPackage " + packages[i]);
                     addPackage(mContext, packages[i]);
                 }
                 break;
             case ConstantResource.OP_UPDATE:
                 for (int i = 0; i < N; i++) {
-                    Log.d("zhulf", "====updatePackage " + packages[i]);
+//                    Log.d("zhulf", "====updatePackage " + packages[i]);
 
                 }
                 break;
             case ConstantResource.OP_REMOVE:
             case ConstantResource.OP_UNAVAILABLE:
                 for (int i = 0; i < N; i++) {
-                    Log.d("zhulf", "====removePackage " + packages[i]);
+//                    Log.d("zhulf", "====removePackage " + packages[i]);
                     removePackage(packages[i]);
                 }
                 break;
@@ -118,7 +123,7 @@ public class AppData {
         for (int i = data.size() - 1; i >= 0; i--) {
             AppInfo info = data.get(i);
             final String pkgName = info.getPackageName();
-            if(packageName.equals(pkgName)) {
+            if (packageName.equals(pkgName)) {
                 appInfoList.remove(i);
             }
         }

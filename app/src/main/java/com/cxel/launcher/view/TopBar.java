@@ -15,6 +15,12 @@ import com.cxel.launcher.R;
 import com.cxel.launcher.net.NetworkMonitor;
 import com.cxel.launcher.util.ConstantResource;
 
+
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 页面上方bar条
+ */
 public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpdateListener {
     private ImageView mUsbicon;
     private ImageView mNetworkIcon;

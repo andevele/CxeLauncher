@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.cxel.launcher.R;
 import com.cxel.launcher.util.Constant;
-
 import java.util.List;
 
 /**
@@ -56,12 +55,16 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
                 viewHolder.mSourceIcon.setImageResource(R.drawable.ic_dtv);
                 break;
             case Constant.INPUT_SOURCE_NAME_AV1:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_av_1);
+                break;
             case Constant.INPUT_SOURCE_NAME_AV2:
-                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_av);
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_av_2);
                 break;
             case Constant.INPUT_SOURCE_NAME_HDMI1:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_hdmi_1);
+                break;
             case Constant.INPUT_SOURCE_NAME_HDMI2:
-                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_hdmi);
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_hdmi_2);
                 break;
             case Constant.INPUT_SOURCE_NAME_VGA:
                 viewHolder.mSourceIcon.setImageResource(R.drawable.ic_vga);
@@ -69,15 +72,15 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
             case Constant.INPUT_SOURCE_NAME_STORAGE:
                 viewHolder.mSourceIcon.setImageResource(R.drawable.ic_storage);
                 break;
-                default:
-                    break;
+            default:
+                break;
 
         }
         viewHolder.itemView.setTag(position);
-        if(onItemClickListener == null) {
+        if (onItemClickListener == null) {
             return;
         }
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener(){
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int layoutPos = viewHolder.getLayoutPosition();
@@ -99,7 +102,7 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
         public CustomViewHolder(View itemView) {
             super(itemView);
             mTextView = (TextView) itemView.findViewById(R.id.textView);
-            mSourceIcon = (ImageView)itemView.findViewById(R.id.imageView);
+            mSourceIcon = (ImageView) itemView.findViewById(R.id.imageView);
         }
     }
 }

@@ -24,7 +24,6 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("zhulf", "===MainApplication===");
         context = getApplicationContext();
         DataAsyncTask dataAsyncTask = new DataAsyncTask();
         dataAsyncTask.setDataTask(new DataAsyncTask.DataTask() {

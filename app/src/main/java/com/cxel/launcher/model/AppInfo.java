@@ -2,6 +2,11 @@ package com.cxel.launcher.model;
 
 import android.graphics.drawable.Drawable;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 每个app模型
+ */
 public class AppInfo {
     private int page;
     private int index;

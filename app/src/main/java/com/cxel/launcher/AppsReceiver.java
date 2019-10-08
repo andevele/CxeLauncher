@@ -8,6 +8,11 @@ import android.util.Log;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.util.ConstantResource;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 所有app相关广播
+ */
 public class AppsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -37,8 +42,8 @@ public class AppsReceiver extends BroadcastReceiver {
                 }
             }
 
-            if(op != ConstantResource.OP_NONE) {
-                AppData.getInstance().updateData(op,new String[]{packageName});
+            if (op != ConstantResource.OP_NONE) {
+                AppData.getInstance().updateData(op, new String[]{packageName});
             }
         }
     }

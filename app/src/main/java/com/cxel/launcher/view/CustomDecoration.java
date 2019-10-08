@@ -5,6 +5,11 @@ import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 所有app页面,自定义间距
+ */
 public class CustomDecoration extends RecyclerView.ItemDecoration {
     private int count;
 
@@ -37,7 +42,7 @@ public class CustomDecoration extends RecyclerView.ItemDecoration {
             outRect.left = -30;
             outRect.right = 90;
         }
-        if(visualPos - 4 < 0) {
+        if (visualPos - 4 < 0) {
             outRect.top = 20;
         }
 //        else {

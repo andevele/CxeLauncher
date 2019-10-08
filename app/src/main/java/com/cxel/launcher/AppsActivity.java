@@ -11,11 +11,18 @@ import com.cxel.launcher.adapter.AllAppsAdapter;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
 import com.cxel.launcher.view.CustomDecoration;
+
 import org.evilbinary.tv.widget.BorderView;
 import org.evilbinary.tv.widget.TvGridLayoutManagerScrolling;
+
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 所有app页面
+ */
 public class AppsActivity extends AppCompatActivity {
     private List<AppInfo> appList;
     private AllAppsAdapter allAppsAdapter;
@@ -44,7 +51,7 @@ public class AppsActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        TextView titleLabel = (TextView)findViewById(R.id.title_label_text);
+        TextView titleLabel = (TextView) findViewById(R.id.title_label_text);
         titleLabel.setText(getResources().getString(R.string.apps_page));
         border = new BorderView(this);
         //border.setBackgroundResource(R.drawable.border_highlight);

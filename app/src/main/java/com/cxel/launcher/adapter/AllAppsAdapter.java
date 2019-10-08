@@ -10,14 +10,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.cxel.launcher.AppsActivity;
 import com.cxel.launcher.R;
 import com.cxel.launcher.base.DataInterface;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
+
 import java.util.List;
 
-public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHolder> implements DataInterface.AppTaskCallBack{
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 所有app宫格适配器
+ */
+public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHolder> implements DataInterface.AppTaskCallBack {
 
     private View mView;
     private List<AppInfo> mlist;

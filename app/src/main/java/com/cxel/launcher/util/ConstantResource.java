@@ -2,6 +2,11 @@ package com.cxel.launcher.util;
 
 import com.cxel.launcher.R;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 网络相关常量
+ */
 public class ConstantResource {
     /**
      * wifi connection signal levels image resources, the array index denote the

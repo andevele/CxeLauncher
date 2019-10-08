@@ -9,26 +9,25 @@
 
     <include layout="@layout/title_label" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/view_first"
-        android:layout_width="245dp"
+        android:layout_width="265dp"
         android:layout_height="303dp"
         android:layout_below="@+id/title_label_container"
-        android:layout_marginStart="90dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:clipChildren="true"
-        android:clipToPadding="true"
-        android:orientation="vertical">
+        android:clipToPadding="true">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/input_source_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center" />
+            android:layout_centerInParent="true" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <org.evilbinary.tv.widget.TvZorderRelativeLayout
         android:id="@+id/view_tvstore_container"

@@ -8,16 +8,10 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.usb.UsbManager;
 import android.net.Uri;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SimpleItemAnimator;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -69,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        TextView titleLabel = (TextView)findViewById(R.id.title_label_text);
+        TextView titleLabel = (TextView) findViewById(R.id.title_label_text);
         titleLabel.setText(getResources().getString(R.string.home_page));
         border = new BorderView(this);
         //border.setBackgroundResource(R.drawable.border_highlight);
@@ -119,10 +113,16 @@ public class MainActivity extends AppCompatActivity {
     private void initInputSourceView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.input_source_RecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, 1, false);
+//        GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setFocusable(false);
-        recyclerView.addItemDecoration(new RecycleViewItemDivider(this, LinearLayoutManager.VERTICAL, 3, getResources().getColor(R.color.input_source_item_divide_bg)));
+        recyclerView.addItemDecoration(new RecycleViewItemDivider(this, LinearLayoutManager.VERTICAL, 5, getResources().getColor(R.color.input_source_item_divide_bg)));
+//        DividerItemDecoration divider = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
+//        divider.setDrawable(ContextCompat.getDrawable(this,R.drawable.custom_divider));
+//        recyclerView.addItemDecoration(divider);
+//        recyclerView.addItemDecoration(new RecycleViewItemDivider(this,LinearLayoutManager.VERTICAL
+//        , 5, getResources().getColor(R.color.input_source_item_divide_bg)));
         border.attachTo(recyclerView);
         CreateSourceData(recyclerView, R.layout.input_soure_list_item);
     }

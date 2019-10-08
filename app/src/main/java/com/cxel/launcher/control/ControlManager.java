@@ -3,10 +3,13 @@ package com.cxel.launcher.control;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
+
 import com.cxel.launcher.MainApplication;
 import com.cxel.launcher.util.Constant;
 import com.mstar.android.tv.TvCommonManager;
+
 import java.util.List;
+
 import android.database.SQLException;
 import android.util.Log;
 

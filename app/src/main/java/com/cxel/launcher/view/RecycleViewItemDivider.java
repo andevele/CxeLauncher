@@ -12,6 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 通道列表间距实现
+ */
 public class RecycleViewItemDivider extends RecyclerView.ItemDecoration {
     private Paint mPaint;
     private Drawable mDivider;
@@ -47,11 +52,18 @@ public class RecycleViewItemDivider extends RecyclerView.ItemDecoration {
     }
 
 
-
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
-        outRect.set(0, 0, 0, mDividerHeight);
+        int visualPos = parent.getChildAdapterPosition(view);
+//        if(visualPos == 0) {
+//            outRect.top = 5;
+//        }
+        int count = parent.getAdapter().getItemCount();
+        if (visualPos == parent.getAdapter().getItemCount() - 1) {
+            outRect.bottom = 0;
+        } else {
+            outRect.bottom = mDividerHeight;
+        }
     }
 
 

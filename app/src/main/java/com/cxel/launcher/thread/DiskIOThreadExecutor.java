@@ -5,7 +5,9 @@ import java.util.concurrent.Executors;
 import android.util.Log;
 
 /**
- * Executor that runs a task on a new background thread.
+ * zhulf 20190924
+ * andevele@163.com
+ * 单个线程池实现
  */
 public class DiskIOThreadExecutor implements Executor {
 

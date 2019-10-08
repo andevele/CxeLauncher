@@ -1,6 +1,7 @@
 package com.cxel.launcher.net;
 
 import java.lang.ref.WeakReference;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,11 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
 
+/**
+ * zhulf 20190924
+ * andevele@163.com
+ * 网络连接
+ */
 public class NetworkMonitor extends BroadcastReceiver {
 
     private static final String TAG = "NetworkMonitor";
