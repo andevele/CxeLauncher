@@ -118,6 +118,7 @@ public class AppData {
             return;
         }
         appInfoList.add(appInfo);
+        Collections.sort(appInfoList,new AppInfo.AppComparator());
         callBack.onAppInfoAdded(appInfoList.size());
     }
 

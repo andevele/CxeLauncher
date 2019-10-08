@@ -2,6 +2,9 @@ package com.cxel.launcher.model;
 
 import android.graphics.drawable.Drawable;
 
+import java.text.Collator;
+import java.util.Comparator;
+
 /**
  * zhulf 20190924
  * andevele@163.com
@@ -67,5 +70,14 @@ public class AppInfo {
 
     public String getActivityName() {
         return activityName;
+    }
+
+    public static class AppComparator implements Comparator<AppInfo> {
+        private Collator mCollator = Collator.getInstance();
+
+        @Override
+        public int compare(AppInfo a, AppInfo b) {
+            return mCollator.compare(a.appName,b.appName);
+        }
     }
 }

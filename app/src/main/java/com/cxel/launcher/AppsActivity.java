@@ -1,6 +1,7 @@
 package com.cxel.launcher;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -31,6 +32,7 @@ public class AppsActivity extends AppCompatActivity {
     private GridLayoutManager gridLayoutManager;
     private RecyclerView appRecyclerView;
     private BorderView border;
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,7 +87,12 @@ public class AppsActivity extends AppCompatActivity {
     }
 
     public void updateViews() {
-        appRecyclerView.scrollToPosition(0);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                appRecyclerView.getFocusedChild().setFocusable(true);
+            }
+        },10);
     }
 
     @Override

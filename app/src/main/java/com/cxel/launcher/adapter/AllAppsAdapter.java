@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cxel.launcher.AppsActivity;
 import com.cxel.launcher.R;
 import com.cxel.launcher.base.DataInterface;
 import com.cxel.launcher.data.AppData;
@@ -81,9 +82,9 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
 
     @Override
     public void onAppInfoAdded(int size) {
-        //this.notifyDataSetChanged();
-        this.notifyItemInserted(size);
-        //((AppsActivity)mContext).updateViews();
+        this.notifyDataSetChanged();
+//        this.notifyItemInserted(size);
+//        ((AppsActivity)mContext).updateViews();
     }
 
     @Override
