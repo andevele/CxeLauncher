@@ -48,7 +48,7 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         appInfo = mlist.get(position);
         holder.icon.setBackground(appInfo.getAppIcon());
         holder.name.setText(appInfo.getAppName());
@@ -58,7 +58,8 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onClick(itemposition);
+                    String pkg = mlist.get(position).getPackageName();
+                    listener.onClick(pkg);
                 }
             }
         });
@@ -93,11 +94,11 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
 
     public void updateData(List<AppInfo> list) {
         this.mlist = list;
-        this.notifyDataSetChanged();
+        //this.notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {
-        void onClick(int position);
+        void onClick(String pkgName);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

@@ -61,6 +61,9 @@ public class AppData {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+//        for(AppInfo appInfo : list) {
+//            Log.d("zhulf","===pkg: " + appInfo.getPackageName());
+//        }
         appInfoList.addAll(list);
         return list;
     }

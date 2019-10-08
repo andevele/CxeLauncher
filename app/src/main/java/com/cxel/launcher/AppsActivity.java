@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.cxel.launcher.adapter.AllAppsAdapter;
+import com.cxel.launcher.control.ControlManager;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
 import com.cxel.launcher.view.CustomDecoration;
@@ -64,6 +65,13 @@ public class AppsActivity extends AppCompatActivity {
         border.attachTo(appRecyclerView);
         appRecyclerView.setAdapter(allAppsAdapter);
         appRecyclerView.scrollToPosition(0);
+        allAppsAdapter.setOnItemClickListener(new AllAppsAdapter.OnItemClickListener(){
+
+            @Override
+            public void onClick(String pkgName) {
+                ControlManager.getInstance().startInstalledApp(AppsActivity.this,pkgName);
+            }
+        });
     }
 
     @Override

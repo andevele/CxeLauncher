@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.cxel.launcher.AppsActivity;
 import com.cxel.launcher.MainApplication;
 import com.cxel.launcher.util.Constant;
 import com.mstar.android.tv.TvCommonManager;
@@ -93,6 +94,16 @@ public class ControlManager {
                     vals, null, null);
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void startInstalledApp(AppsActivity appsActivity, String pkgName) {
+        Intent intent = new Intent();
+        intent = appsActivity.getPackageManager().getLaunchIntentForPackage(pkgName);
+        if (intent != null) {
+            intent.setPackage(null);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+            appsActivity.startActivity(intent);
         }
     }
 
