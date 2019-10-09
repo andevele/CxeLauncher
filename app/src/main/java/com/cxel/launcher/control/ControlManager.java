@@ -124,4 +124,8 @@ public class ControlManager {
         MainApplication.getContext().startActivity(intent);
     }
 
+    public void setInputSource(int sourceIndex) {
+        TvCommonManager.getInstance().setInputSource(sourceIndex);
+    }
+
 }

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.os.SystemProperties;
 
 import com.cxel.launcher.adapter.InputSourceAdapter;
 import com.cxel.launcher.control.ControlManager;
@@ -21,6 +22,7 @@ import com.cxel.launcher.net.NetworkMonitor;
 import com.cxel.launcher.util.Constant;
 import com.cxel.launcher.view.RecycleViewItemDivider;
 import com.cxel.launcher.view.TopBar;
+import com.mstar.android.tv.TvCommonManager;
 
 import org.evilbinary.tv.widget.BorderView;
 import org.evilbinary.tv.widget.RoundedFrameLayout;
@@ -83,9 +85,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //boot to launcher or TV, 0 is to launcher,1 is to TV
+        SystemProperties.set("persist.sys.intvmode", "0");
+        goToStorageSource();
         if (mNetworkMonitor != null) {
             mNetworkMonitor.startMonitor();
         }
+
     }
 
     @Override
@@ -209,6 +215,16 @@ public class MainActivity extends AppCompatActivity {
                 ControlManager.getInstance().switchSource(layoutPos, dataList);
             }
         });
+    }
+
+    private void goToStorageSource() {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                ControlManager.getInstance().setInputSource(TvCommonManager.INPUT_SOURCE_STORAGE);
+            }
+        }).start();
     }
 
     @Override
