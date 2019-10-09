@@ -1,17 +1,15 @@
 package com.cxel.launcher;
 
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.hardware.usb.UsbManager;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -44,15 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private NetworkMonitor.INetworkUpdateListener mNetworkUpdateListener;
     private NetworkMonitor mNetworkMonitor;
     private TopBar topBar;
-
-    private BroadcastReceiver mStorageReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            topBar.updateView(action);
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,25 +78,22 @@ public class MainActivity extends AppCompatActivity {
         topBar = (TopBar) findViewById(R.id.topbar_container);
         mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
         mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
-
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
-        filter.addAction(Intent.ACTION_MEDIA_REMOVED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
-        registerReceiver(mStorageReceiver, filter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mNetworkMonitor.startMonitor();
+        if (mNetworkMonitor != null) {
+            mNetworkMonitor.startMonitor();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mNetworkMonitor.stopMonitor();
+        if (mNetworkMonitor != null) {
+            mNetworkMonitor.stopMonitor();
+        }
     }
 
     private void initInputSourceView() {
@@ -188,19 +174,6 @@ public class MainActivity extends AppCompatActivity {
     private void CreateSourceData(final RecyclerView recyclerView, final int layoutId) {
         List<String> data = new ArrayList<String>();
         List<String> list = new ArrayList<String>();
-//        list.add(0,"ATV");
-//        list.add(1,"AV1");
-//        list.add(2,"AV2");
-//        list.add(3,"HDMI1");
-//        list.add(4,"HDMI2");
-//        list.add(5,"VGA");
-//        list.add(6,"MEDIA");
-//        data.addAll(list);
-//        InputSourceAdapter adapter = new InputSourceAdapter(getApplicationContext(), data,layoutId);
-//        recyclerView.setAdapter(adapter);
-//        recyclerView.scrollToPosition(0);
-//        adapter.notifyDataSetChanged();
-
         MainApplication application = (MainApplication) getApplication();
         Map<String, List<String>> dataMap = application.getDataMap();
         List<String> dataList = dataMap.get(Constant.INPUT_SOURCE_SECTION);
@@ -241,6 +214,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mStorageReceiver);
+        if (mNetworkMonitor != null) {
+            mNetworkMonitor.stopMonitor();
+        }
     }
 }

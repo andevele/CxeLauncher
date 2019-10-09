@@ -33,7 +33,7 @@ public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpd
     public TopBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
-        LayoutInflater.from(context).inflate(R.layout.top_bar, this, true);
+        LayoutInflater.from(context).inflate(R.layout.top_bar, this);
         mNetworkIcon = (ImageView) findViewById(R.id.network_label);
         mNetworkIcon.setFocusable(false);
         mUsbicon = (ImageView) findViewById(R.id.usb_icon);
@@ -101,6 +101,11 @@ public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpd
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onUpdateUSBConnectivity(String action) {
+        updateView(action);
     }
 
     private void setNetworkStatusImg() {

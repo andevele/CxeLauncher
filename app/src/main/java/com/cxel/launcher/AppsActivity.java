@@ -6,13 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cxel.launcher.adapter.AllAppsAdapter;
 import com.cxel.launcher.control.ControlManager;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
+import com.cxel.launcher.net.NetworkMonitor;
 import com.cxel.launcher.view.CustomDecoration;
+import com.cxel.launcher.view.TopBar;
 
 import org.evilbinary.tv.widget.BorderView;
 import org.evilbinary.tv.widget.TvGridLayoutManagerScrolling;
@@ -33,13 +36,24 @@ public class AppsActivity extends AppCompatActivity {
     private RecyclerView appRecyclerView;
     private BorderView border;
     private Handler handler = new Handler();
+    private TopBar topBar;
+    private RelativeLayout topBarLayout;
+    private NetworkMonitor.INetworkUpdateListener mNetworkUpdateListener;
+    private NetworkMonitor mNetworkMonitor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.apps_main);
+        initTopBars();
         initData();
         initView();
+    }
+
+    private void initTopBars() {
+        topBar = (TopBar) findViewById(R.id.topbar_container);
+        mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
+        mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
     }
 
     private void initData() {
@@ -82,11 +96,18 @@ public class AppsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        mNetworkMonitor.startMonitor();
         List<AppInfo> appInfoList = AppData.getInstance().getAppInfo();
         if (appInfoList == null || appInfoList.size() < 1) {
             appInfoList = AppData.getInstance().catchAppInfo();
         }
         allAppsAdapter.updateData(appInfoList);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mNetworkMonitor.stopMonitor();
     }
 
     public void updateViews() {

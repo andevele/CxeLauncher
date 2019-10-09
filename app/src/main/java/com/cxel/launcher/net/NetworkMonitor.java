@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.hardware.usb.UsbManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
@@ -52,13 +53,13 @@ public class NetworkMonitor extends BroadcastReceiver {
 
     public interface INetworkUpdateListener {
         void onUpdateNetworkConnectivity(Bundle newConnectivity);
+        void onUpdateUSBConnectivity(String action);
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         String action = intent.getAction();
-
         if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
             mWifiEnabled = intent.getIntExtra(ConnectivityManager.EXTRA_NETWORK_TYPE, ConnectivityManager.TYPE_ETHERNET) == ConnectivityManager.TYPE_WIFI;
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -84,6 +85,13 @@ public class NetworkMonitor extends BroadcastReceiver {
             if (mWifiConnected) {
                 mWifiRssi = intent.getIntExtra(WifiManager.EXTRA_NEW_RSSI, -200);
                 mWifiLevel = WifiManager.calculateSignalLevel(mWifiRssi, WIFI_LEVEL_COUNT);
+            }
+        } else if (action.equals(Intent.ACTION_MEDIA_MOUNTED)
+                ||action.equals(Intent.ACTION_MEDIA_REMOVED)
+                ||action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)
+                ||action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
+            if (mListener != null) {
+                mListener.onUpdateUSBConnectivity(action);
             }
         }
 
@@ -121,6 +129,12 @@ public class NetworkMonitor extends BroadcastReceiver {
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
+
+        filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        filter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+
         Context context = mContextRef.get();
         if (context != null && flag == false) {
             context.registerReceiver(this, filter);

@@ -10,8 +10,7 @@
     <com.cxel.launcher.view.TopBar
         android:id="@+id/topbar_container"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:clipChildren="false" />
+        android:layout_height="80dp" />
 
     <include layout="@layout/middle_content" />
 
