@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.cxel.launcher.R;
 import com.cxel.launcher.net.NetworkMonitor;
+import com.cxel.launcher.util.Constant;
 import com.cxel.launcher.util.ConstantResource;
 
 
@@ -121,6 +122,7 @@ public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpd
 
     public void updateView(String action) {
         switch (action) {
+            case Constant.ACTION_USB_MOUNTED:
             case Intent.ACTION_MEDIA_MOUNTED:
             case UsbManager.ACTION_USB_DEVICE_ATTACHED:
                 mUsbicon.setImageResource(R.drawable.ic_usb_inserted);

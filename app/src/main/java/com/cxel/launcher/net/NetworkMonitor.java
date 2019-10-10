@@ -1,5 +1,6 @@
 package com.cxel.launcher.net;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 
 import android.content.BroadcastReceiver;
@@ -11,7 +12,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.util.Log;
+
+import com.cxel.launcher.util.Constant;
+import com.cxel.launcher.util.USBUtil;
 
 /**
  * zhulf 20190924
@@ -56,9 +62,10 @@ public class NetworkMonitor extends BroadcastReceiver {
         void onUpdateUSBConnectivity(String action);
     }
 
+    public NetworkMonitor(){}
+
     @Override
     public void onReceive(Context context, Intent intent) {
-
         String action = intent.getAction();
         if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
             mWifiEnabled = intent.getIntExtra(ConnectivityManager.EXTRA_NETWORK_TYPE, ConnectivityManager.TYPE_ETHERNET) == ConnectivityManager.TYPE_WIFI;
@@ -87,9 +94,9 @@ public class NetworkMonitor extends BroadcastReceiver {
                 mWifiLevel = WifiManager.calculateSignalLevel(mWifiRssi, WIFI_LEVEL_COUNT);
             }
         } else if (action.equals(Intent.ACTION_MEDIA_MOUNTED)
-                ||action.equals(Intent.ACTION_MEDIA_REMOVED)
-                ||action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)
-                ||action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
+                || action.equals(Intent.ACTION_MEDIA_REMOVED)
+                || action.equals(UsbManager.ACTION_USB_DEVICE_ATTACHED)
+                || action.equals(UsbManager.ACTION_USB_DEVICE_DETACHED)) {
             if (mListener != null) {
                 mListener.onUpdateUSBConnectivity(action);
             }
@@ -130,14 +137,17 @@ public class NetworkMonitor extends BroadcastReceiver {
         filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         filter.addAction(WifiManager.RSSI_CHANGED_ACTION);
 
-        filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
-        filter.addAction(Intent.ACTION_MEDIA_REMOVED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
-        filter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        IntentFilter usbFilter = new IntentFilter();
+        usbFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        usbFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        usbFilter.addAction(UsbManager.ACTION_USB_DEVICE_ATTACHED);
+        usbFilter.addAction(UsbManager.ACTION_USB_DEVICE_DETACHED);
+        usbFilter.addDataScheme("file");
 
         Context context = mContextRef.get();
         if (context != null && flag == false) {
             context.registerReceiver(this, filter);
+            context.registerReceiver(this, usbFilter);
             flag = true;
         }
     }
@@ -152,6 +162,24 @@ public class NetworkMonitor extends BroadcastReceiver {
             context.unregisterReceiver(this);
         }
     }
+
+    /**
+     * 检测USB状态
+     */
+    public void checkUsb() {
+        String path = null;
+        Context context = mContextRef.get();
+        if(context == null) {
+            return;
+        }
+        StorageManager sm = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
+        if(USBUtil.isUSBMounted(sm)) {
+            if (mListener != null) {
+                mListener.onUpdateUSBConnectivity(Constant.ACTION_USB_MOUNTED);
+            }
+        }
+    }
+
 
     private void updateActiveNetwork() {
         if (mWifiEnabled) {

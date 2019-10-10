@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initViews();
         initTopBars();
+        initViews();
     }
 
     private void initViews() {
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         topBar = (TopBar) findViewById(R.id.topbar_container);
         mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
         mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
+        mNetworkMonitor.checkUsb();
     }
 
     @Override
@@ -225,6 +226,12 @@ public class MainActivity extends AppCompatActivity {
                 ControlManager.getInstance().setInputSource(TvCommonManager.INPUT_SOURCE_STORAGE);
             }
         }).start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Do not respond to the exit key
+        //super.onBackPressed();
     }
 
     @Override

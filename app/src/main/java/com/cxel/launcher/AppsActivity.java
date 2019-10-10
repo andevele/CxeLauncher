@@ -48,12 +48,14 @@ public class AppsActivity extends AppCompatActivity {
         initTopBars();
         initData();
         initView();
+
     }
 
     private void initTopBars() {
         topBar = (TopBar) findViewById(R.id.topbar_container);
         mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
         mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
+        mNetworkMonitor.checkUsb();
     }
 
     private void initData() {
@@ -84,11 +86,11 @@ public class AppsActivity extends AppCompatActivity {
         appRecyclerView.setAdapter(allAppsAdapter);
         appRecyclerView.scrollToPosition(0);
 
-        allAppsAdapter.setOnItemClickListener(new AllAppsAdapter.OnItemClickListener(){
+        allAppsAdapter.setOnItemClickListener(new AllAppsAdapter.OnItemClickListener() {
 
             @Override
             public void onClick(String pkgName) {
-                ControlManager.getInstance().startInstalledApp(AppsActivity.this,pkgName);
+                ControlManager.getInstance().startInstalledApp(AppsActivity.this, pkgName);
             }
         });
     }
@@ -116,7 +118,7 @@ public class AppsActivity extends AppCompatActivity {
             public void run() {
                 appRecyclerView.setItemAnimator(null);
             }
-        },0);
+        }, 0);
     }
 
     @Override
