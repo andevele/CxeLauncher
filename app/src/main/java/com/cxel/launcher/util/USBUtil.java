@@ -22,7 +22,7 @@ public class USBUtil {
         boolean result = false;
         try {
             Class clz = StorageManager.class;
-            Method getVolumeList = clz.getMethod("getVolumeList", null);
+            Method getVolumeList = clz.getMethod("getVolumeList");
             StorageVolume[] volumes = (StorageVolume[]) getVolumeList.invoke(storageManager, null);
             for (int i = 0; i < volumes.length; i++) {
                 String element = volumes[i].toString();
