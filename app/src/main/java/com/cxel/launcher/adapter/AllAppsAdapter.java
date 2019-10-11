@@ -1,6 +1,8 @@
 package com.cxel.launcher.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,8 +18,10 @@ import com.cxel.launcher.R;
 import com.cxel.launcher.base.DataInterface;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
+import com.cxel.launcher.util.ColorUtil;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * zhulf 20190924
@@ -56,6 +60,10 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
         holder.name.setText(appInfo.getAppName());
 
         final int itemposition = position;
+//        Random random = new Random();
+//        int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+//        holder.itemlayout.setBackgroundColor(color);
+        setBackgroundColor(holder);
         holder.itemlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +82,11 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
                 return true;
             }
         });
+    }
+
+    private void setBackgroundColor(ViewHolder holder) {
+        GradientDrawable bgShape = (GradientDrawable)holder.itemlayout.getBackground();
+        bgShape.setColor(Color.parseColor(ColorUtil.getRandomColor()));
     }
 
     @Override

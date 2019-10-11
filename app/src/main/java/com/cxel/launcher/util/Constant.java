@@ -25,7 +25,7 @@ public class Constant {
     public static final String INPUT_SOURCE_NAME_VGA = "VGA";
     public static final String INPUT_SOURCE_NAME_STORAGE = "STORAGE";
 
-    public static final String INPUT_SOURCE_JSON_FILE = "/tvconfig/config/source.json";
+    public static final String INPUT_SOURCE_JSON_FILE = "/tvcustomer/Customer/source.json";
     public static final String INPUT_SOURCE_SECTION = "inputsource";
     public static final String ACTION_USB_MOUNTED = "action.usb.mounted";
 
