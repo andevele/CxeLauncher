@@ -20,18 +20,19 @@
             android:id="@+id/item_app_icon"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/item_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:ellipsize="marquee"
-        android:gravity="center"
-        android:layout_marginStart="20dp"
+        android:gravity="center_vertical"
         android:marqueeRepeatLimit="marquee_forever"
-        android:singleLine="true"
+        android:paddingEnd="5dp"
+        android:singleLine="false"
         android:textColor="#ffffff"
         android:textSize="24sp" />
 
