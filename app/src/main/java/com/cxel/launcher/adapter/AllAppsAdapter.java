@@ -63,7 +63,7 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
 //        Random random = new Random();
 //        int color = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
 //        holder.itemlayout.setBackgroundColor(color);
-        setBackgroundColor(holder);
+//        setBackgroundColor(holder);
         holder.itemlayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

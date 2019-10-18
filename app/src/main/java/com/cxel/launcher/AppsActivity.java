@@ -34,7 +34,7 @@ public class AppsActivity extends AppCompatActivity {
     private static final int spanCount = 4;
     private GridLayoutManager gridLayoutManager;
     private RecyclerView appRecyclerView;
-    private BorderView border;
+//    private BorderView border;
     private Handler handler = new Handler();
     private TopBar topBar;
     private RelativeLayout topBarLayout;
@@ -72,15 +72,15 @@ public class AppsActivity extends AppCompatActivity {
     private void initView() {
         TextView titleLabel = (TextView) findViewById(R.id.title_label_text);
         titleLabel.setText(getResources().getString(R.string.apps_page));
-        border = new BorderView(this);
+//        border = new BorderView(this);
         //border.setBackgroundResource(R.drawable.border_highlight);
-        border.setBackgroundResource(R.drawable.custom_border);
+//        border.setBackgroundResource(R.drawable.custom_border);
         appRecyclerView = (RecyclerView) findViewById(R.id.apps_list);
         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         appRecyclerView.setLayoutManager(gridLayoutManager);
         appRecyclerView.addItemDecoration(new CustomDecoration());
         appRecyclerView.setFocusable(false);
-        border.attachTo(appRecyclerView);
+//        border.attachTo(appRecyclerView);
         allAppsAdapter.setHasStableIds(true);
         appRecyclerView.setItemAnimator(null);
         appRecyclerView.setAdapter(allAppsAdapter);
