@@ -82,6 +82,17 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
                 return true;
             }
         });
+        holder.itemlayout.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                view.animate().cancel();
+                if(hasFocus) {
+                    view.animate().scaleX(1.1f).scaleY(1.1f).setDuration(200).start();
+                } else {
+                    view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(200).start();
+                }
+            }
+        });
     }
 
     private void setBackgroundColor(ViewHolder holder) {
