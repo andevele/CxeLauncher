@@ -59,8 +59,14 @@ public class RecycleViewItemDivider extends RecyclerView.ItemDecoration {
 //            outRect.top = 5;
 //        }
         int count = parent.getAdapter().getItemCount();
-        if (visualPos == parent.getAdapter().getItemCount() - 1) {
-            outRect.bottom = 0;
+//        if (visualPos == parent.getAdapter().getItemCount() - 1) {
+//            outRect.bottom = 0;
+//        } else {
+//            outRect.bottom = mDividerHeight;
+//        }
+        if(visualPos == 0) {
+            outRect.top = mDividerHeight;
+            outRect.bottom = mDividerHeight;
         } else {
             outRect.bottom = mDividerHeight;
         }

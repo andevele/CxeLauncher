@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp" />
 
-    <include layout="@layout/middle_content" />
+    <include layout="@layout/home_middle_content" />
 
 
 </LinearLayout>

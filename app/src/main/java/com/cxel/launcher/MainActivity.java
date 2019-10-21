@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,7 +41,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     private ViewGroup mainContainer;
-    private BorderView border;
+//    private BorderView border;
     private NetworkMonitor.INetworkUpdateListener mNetworkUpdateListener;
     private NetworkMonitor mNetworkMonitor;
     private TopBar topBar;
@@ -56,21 +57,24 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         TextView titleLabel = (TextView) findViewById(R.id.title_label_text);
         titleLabel.setText(getResources().getString(R.string.home_page));
-        border = new BorderView(this);
+//        border = new BorderView(this);
         //border.setBackgroundResource(R.drawable.border_highlight);
-        border.setBackgroundResource(R.drawable.custom_border);
+//        border.setBackgroundResource(R.drawable.custom_border);
         mainContainer = (ViewGroup) findViewById(R.id.list);
-        border.attachTo(mainContainer);
+//        border.attachTo(mainContainer);
 
-        ViewClickListener listener = new ViewClickListener();
+        ViewClickListener viewClickListener = new ViewClickListener();
+        View.OnFocusChangeListener focusChangeListener = new ViewFocusChangeListener();
         for (int i = 0; i < mainContainer.getChildCount(); i++) {
-            mainContainer.getChildAt(i).setOnClickListener(listener);
+            mainContainer.getChildAt(i).setOnClickListener(viewClickListener);
+            mainContainer.getChildAt(i).setOnFocusChangeListener(focusChangeListener);
         }
 
         TvZorderRelativeLayout tvstoreContainer = (TvZorderRelativeLayout) findViewById(R.id.view_tvstore_container);
-        border.attachTo(tvstoreContainer);
+//        border.attachTo(tvstoreContainer);
         RoundedFrameLayout tvstore = (RoundedFrameLayout) findViewById(R.id.view_tvstore);
-        tvstore.setOnClickListener(listener);
+        tvstore.setOnClickListener(viewClickListener);
+        tvstore.setOnFocusChangeListener(focusChangeListener);
 
         initInputSourceView();
 
@@ -109,14 +113,14 @@ public class MainActivity extends AppCompatActivity {
 //        GridLayoutManager layoutManager = new GridLayoutManager(this,1);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setFocusable(false);
+        recyclerView.setFocusable(true);
         recyclerView.addItemDecoration(new RecycleViewItemDivider(this, LinearLayoutManager.VERTICAL, 5, getResources().getColor(R.color.input_source_item_divide_bg)));
 //        DividerItemDecoration divider = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
 //        divider.setDrawable(ContextCompat.getDrawable(this,R.drawable.custom_divider));
 //        recyclerView.addItemDecoration(divider);
 //        recyclerView.addItemDecoration(new RecycleViewItemDivider(this,LinearLayoutManager.VERTICAL
 //        , 5, getResources().getColor(R.color.input_source_item_divide_bg)));
-        border.attachTo(recyclerView);
+//        border.attachTo(recyclerView);
         CreateSourceData(recyclerView, R.layout.input_soure_list_item);
     }
 
@@ -138,6 +142,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity("com.cxel.launcher.action.AllAppsAdapter");
             } else if (view.getId() == R.id.view_tvstore) {
                 launchApp("cm.aptoidetv.pt");
+            }
+        }
+    }
+
+    class ViewFocusChangeListener implements View.OnFocusChangeListener {
+
+        @Override
+        public void onFocusChange(View view, boolean hasFocus) {
+            if(hasFocus) {
+                ViewCompat.animate(view)
+                        .scaleX(1.1f)
+                        .scaleY(1.1f)
+                        .setDuration(200)
+                        .start();
+            } else {
+                ViewCompat.animate(view)
+                        .scaleX(1.0f)
+                        .scaleY(1.0f)
+                        .setDuration(200)
+                        .start();
             }
         }
     }

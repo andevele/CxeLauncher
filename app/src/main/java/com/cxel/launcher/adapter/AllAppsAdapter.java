@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -87,9 +88,20 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
             public void onFocusChange(View view, boolean hasFocus) {
                 view.animate().cancel();
                 if(hasFocus) {
-                    view.animate().scaleX(1.1f).scaleY(1.1f).setDuration(200).start();
+//                    view.animate().scaleX(1.1f).scaleY(1.1f).setDuration(200).start();
+                    ViewCompat.animate(view)
+                            .scaleX(1.1f)
+                            .scaleY(1.1f)
+                            .setDuration(200)
+                            .start();
+
                 } else {
-                    view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(200).start();
+//                    view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(200).start();
+                    ViewCompat.animate(view)
+                            .scaleX(1.0f)
+                            .scaleY(1.0f)
+                            .setDuration(200)
+                            .start();
                 }
             }
         });
