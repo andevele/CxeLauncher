@@ -20,6 +20,7 @@ import android.view.View;
 public class RecycleViewItemDivider extends RecyclerView.ItemDecoration {
     private Paint mPaint;
     private Drawable mDivider;
+    private int mTopMargin = 2;
     private int mDividerHeight = 3;
     private int mOrientation;
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider};
@@ -65,7 +66,7 @@ public class RecycleViewItemDivider extends RecyclerView.ItemDecoration {
 //            outRect.bottom = mDividerHeight;
 //        }
         if(visualPos == 0) {
-            outRect.top = mDividerHeight;
+            outRect.top = mTopMargin;
             outRect.bottom = mDividerHeight;
         } else {
             outRect.bottom = mDividerHeight;

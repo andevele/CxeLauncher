@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setFocusable(true);
-        recyclerView.addItemDecoration(new RecycleViewItemDivider(this, LinearLayoutManager.VERTICAL, 5, getResources().getColor(R.color.input_source_item_divide_bg)));
+        recyclerView.addItemDecoration(new RecycleViewItemDivider(this, LinearLayoutManager.VERTICAL, 7, getResources().getColor(R.color.input_source_item_divide_bg)));
 //        DividerItemDecoration divider = new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
 //        divider.setDrawable(ContextCompat.getDrawable(this,R.drawable.custom_divider));
 //        recyclerView.addItemDecoration(divider);

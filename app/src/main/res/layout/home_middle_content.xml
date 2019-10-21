@@ -12,12 +12,12 @@
     <RelativeLayout
         android:id="@+id/view_first"
         android:layout_width="265dp"
-        android:layout_height="309dp"
+        android:layout_height="303dp"
         android:layout_below="@+id/title_label_container"
         android:layout_marginStart="80dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="20dp"
         android:clipChildren="true"
         android:clipToPadding="true">
 
@@ -41,7 +41,7 @@
         <org.evilbinary.tv.widget.RoundedFrameLayout
             android:id="@+id/view_tvstore"
             android:layout_width="247dp"
-            android:layout_height="160dp"
+            android:layout_height="162dp"
             android:background="@drawable/bg_home_item_selector"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -70,7 +70,6 @@
             android:layout_width="265dp"
             android:layout_height="303dp"
             android:layout_alignTop="@+id/view_first"
-            android:layout_marginTop="3dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:layout_toEndOf="@+id/view_first"
