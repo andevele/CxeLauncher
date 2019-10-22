@@ -83,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
     private void initTopBars() {
         topBar = (TopBar) findViewById(R.id.topbar_container);
         mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
-        mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
+        if(mNetworkMonitor == null) {
+            mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
+        }
         mNetworkMonitor.checkUsb();
     }
 
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         if (mNetworkMonitor != null) {
             mNetworkMonitor.startMonitor();
         }
+        initTopBars();
 
     }
 

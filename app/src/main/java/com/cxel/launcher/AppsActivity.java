@@ -54,7 +54,9 @@ public class AppsActivity extends AppCompatActivity {
     private void initTopBars() {
         topBar = (TopBar) findViewById(R.id.topbar_container);
         mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
-        mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
+        if(mNetworkMonitor == null) {
+            mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
+        }
         mNetworkMonitor.checkUsb();
     }
 
@@ -99,6 +101,7 @@ public class AppsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mNetworkMonitor.startMonitor();
+        initTopBars();
         List<AppInfo> appInfoList = AppData.getInstance().getAppInfo();
         if (appInfoList == null || appInfoList.size() < 1) {
             appInfoList = AppData.getInstance().catchAppInfo();
