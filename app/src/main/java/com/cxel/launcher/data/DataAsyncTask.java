@@ -1,11 +1,12 @@
 package com.cxel.launcher.data;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cxel.launcher.model.SourceJsonBean;
+import com.cxel.launcher.util.LogUtils;
+
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,7 @@ import java.util.List;
  * 解析通道数据
  */
 public class DataAsyncTask extends AsyncTask<String, Void, List<String>> {
-    private static final String TAG = "DataAnyscTask";
+    private static final String TAG = DataAsyncTask.class.getSimpleName();
     private DataTask task;
 
     public interface DataTask {
@@ -38,23 +39,23 @@ public class DataAsyncTask extends AsyncTask<String, Void, List<String>> {
         List<String> sourceList = new ArrayList<String>();
         File jsonFile = new File(jsonFilePath);
         if (!jsonFile.exists()) {
-            Log.e(TAG, "jsonFile is not exist");
+            LogUtils.e(TAG, "jsonFile is not exist");
             return null;
         }
         String jsonString = "";
         try {
             jsonString = FileUtils.readFileToString(jsonFile, "utf-8");
 
-//            Log.d(TAG, "jsonString: \n" + jsonString);
+            LogUtils.v(TAG,"jsonString: \n" + jsonString);
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            Log.e(TAG, "readFileToString error");
+            LogUtils.e(TAG, "readFileToString error");
             e.printStackTrace();
         }
 
         if (jsonString == null || jsonString.contentEquals("")) {
-            Log.e(TAG, "jsonString is null");
+            LogUtils.e(TAG, "jsonString is null");
             throw new NullPointerException();
         }
         JSONObject jsonObject = JSON.parseObject(jsonString);
@@ -73,7 +74,7 @@ public class DataAsyncTask extends AsyncTask<String, Void, List<String>> {
     protected void onPostExecute(List<String> sourceList) {
         super.onPostExecute(sourceList);
         if (sourceList == null || sourceList.size() < 0) {
-            Log.e(TAG, "sourceList is null");
+            LogUtils.e(TAG, "sourceList is null");
             return;
         }
         task.excuteSuccess(sourceList);

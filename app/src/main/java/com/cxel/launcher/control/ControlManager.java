@@ -7,12 +7,12 @@ import android.net.Uri;
 import com.cxel.launcher.AppsActivity;
 import com.cxel.launcher.MainApplication;
 import com.cxel.launcher.util.Constant;
+import com.cxel.launcher.util.LogUtils;
 import com.mstar.android.tv.TvCommonManager;
 
 import java.util.List;
 
 import android.database.SQLException;
-import android.util.Log;
 
 /**
  * zhulf 20190924
@@ -20,7 +20,7 @@ import android.util.Log;
  * 控制类
  */
 public class ControlManager {
-    private static final String TAG = "ControlManager";
+    private static final String TAG = ControlManager.class.getSimpleName();
     private static ControlManager INSTANCE = null;
     private final TvCommonManager mTvCommonmanager;
 
@@ -37,7 +37,7 @@ public class ControlManager {
 
     public void switchSource(int pos, List<String> dataList) {
         String sourceName = dataList.get(pos);
-        Log.d(TAG, "sourceName: " + sourceName);
+        LogUtils.v(TAG, "sourceName: " + sourceName);
         switch (sourceName) {
             case Constant.INPUT_SOURCE_NAME_ATV:
                 switchSource(TvCommonManager.INPUT_SOURCE_ATV);
@@ -86,7 +86,7 @@ public class ControlManager {
         long ret = -1;
         ContentValues vals = new ContentValues();
         vals.put("enInputSourceType", inputSourceIndex);
-        Log.d(TAG, "inputSourceIndex: " + inputSourceIndex);
+        LogUtils.v(TAG, "inputSourceIndex: " + inputSourceIndex);
 
         try {
             ret = MainApplication.getContext().getContentResolver().update(

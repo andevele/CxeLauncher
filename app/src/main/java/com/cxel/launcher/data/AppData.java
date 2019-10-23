@@ -25,7 +25,6 @@ import java.util.concurrent.FutureTask;
  * 所有app获取的数据类
  */
 public class AppData {
-    private static final String TAG = "AppData";
     private static AppData INSTANCE = null;
     private final Context mContext;
     private final PackageManager packageManager;
@@ -79,20 +78,17 @@ public class AppData {
         switch (opt) {
             case ConstantResource.OP_ADD:
                 for (int i = 0; i < N; i++) {
-//                    Log.d("zhulf", "===addPackage " + packages[i]);
                     addPackage(mContext, packages[i]);
                 }
                 break;
             case ConstantResource.OP_UPDATE:
                 for (int i = 0; i < N; i++) {
-//                    Log.d("zhulf", "====updatePackage " + packages[i]);
-
+                    //will be to do
                 }
                 break;
             case ConstantResource.OP_REMOVE:
             case ConstantResource.OP_UNAVAILABLE:
                 for (int i = 0; i < N; i++) {
-//                    Log.d("zhulf", "====removePackage " + packages[i]);
                     removePackage(packages[i]);
                 }
                 break;

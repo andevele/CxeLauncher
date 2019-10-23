@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.util.ConstantResource;
+import com.cxel.launcher.util.LogUtils;
 
 /**
  * zhulf 20190924
@@ -14,6 +15,8 @@ import com.cxel.launcher.util.ConstantResource;
  * 所有app相关广播
  */
 public class AppsReceiver extends BroadcastReceiver {
+    private static final String TAG = AppsReceiver.class.getSimpleName();
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
@@ -22,7 +25,7 @@ public class AppsReceiver extends BroadcastReceiver {
                 || Intent.ACTION_PACKAGE_ADDED.equals(action)) {
             String packageName = intent.getData().getSchemeSpecificPart();
             boolean replacing = intent.getBooleanExtra(Intent.EXTRA_REPLACING, false);
-//            Log.d("zhulf", "====replacing:" + replacing + " packageName:" + packageName);
+            LogUtils.v(TAG, "replacing:" + replacing + " packageName:" + packageName);
             int op = ConstantResource.OP_NONE;
             if (packageName == null || packageName.length() == 0) {
                 return;
