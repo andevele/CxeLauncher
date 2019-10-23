@@ -23,7 +23,7 @@ public class Constant {
     public static final String INPUT_SOURCE_NAME_YPBPR1 = "YPBPR1";
     public static final String INPUT_SOURCE_NAME_YPBPR2 = "YPBPR2";
     public static final String INPUT_SOURCE_NAME_VGA = "VGA";
-    public static final String INPUT_SOURCE_NAME_STORAGE = "STORAGE";
+    public static final String INPUT_SOURCE_NAME_MEDIA = "MEDIA";
 
     public static final String INPUT_SOURCE_JSON_FILE = "/tvcustomer/Customer/source.json";
     public static final String INPUT_SOURCE_SECTION = "inputsource";

@@ -70,8 +70,8 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
             case Constant.INPUT_SOURCE_NAME_VGA:
                 viewHolder.mSourceIcon.setImageResource(R.drawable.ic_vga);
                 break;
-            case Constant.INPUT_SOURCE_NAME_STORAGE:
-                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_storage);
+            case Constant.INPUT_SOURCE_NAME_MEDIA:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_usb);
                 break;
             default:
                 break;

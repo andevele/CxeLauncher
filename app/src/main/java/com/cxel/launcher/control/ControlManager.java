@@ -60,7 +60,7 @@ public class ControlManager {
             case Constant.INPUT_SOURCE_NAME_VGA:
                 switchSource(TvCommonManager.INPUT_SOURCE_VGA);
                 break;
-            case Constant.INPUT_SOURCE_NAME_STORAGE:
+            case Constant.INPUT_SOURCE_NAME_MEDIA:
                 //switchSource(TvCommonManager.INPUT_SOURCE_STORAGE);
                 switchToStorage();
                 break;
