@@ -48,6 +48,7 @@ public class AppsActivity extends AppCompatActivity {
         initTopBars();
         initData();
         initView();
+        mNetworkMonitor.startMonitor();
 
     }
 
@@ -100,7 +101,7 @@ public class AppsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mNetworkMonitor.startMonitor();
+
         initTopBars();
         List<AppInfo> appInfoList = AppData.getInstance().getAppInfo();
         if (appInfoList == null || appInfoList.size() < 1) {
@@ -112,7 +113,7 @@ public class AppsActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mNetworkMonitor.stopMonitor();
+
     }
 
     public void updateViews() {
@@ -127,5 +128,6 @@ public class AppsActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mNetworkMonitor.stopMonitor();
     }
 }

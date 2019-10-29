@@ -29,4 +29,15 @@ public class Constant {
     public static final String INPUT_SOURCE_SECTION = "inputsource";
     public static final String ACTION_USB_MOUNTED = "action.usb.mounted";
 
+    public static final String APPS_NAME_APTOIDE = "Aptoide TV";
+    public static final String APPS_NAME_HOTSTAR = "Hotstar";
+    public static final String APPS_NAME_YOUTUBE = "YouTube";
+    public static final String APPS_NAME_PRIMEVIDEO = "Prime Video";
+    public static final String APPS_NAME_LOCALMM = "LocalMM";
+    public static final String APPS_NAME_DOWNLOAD = "Downloads";
+    public static final String APPS_NAME_APK_MANAGER = "APK Manager";
+    public static final String APPS_NAME_FILE_EXPLORER = "File Explorer";
+    public static final String APPS_NAME_FILE_SEARCH = "Search";
+    public static final String APPS_NAME_FILE_MCAST = "Mcast";
+
 }

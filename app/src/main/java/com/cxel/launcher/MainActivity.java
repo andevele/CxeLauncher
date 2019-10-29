@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initTopBars();
         initViews();
+        if (mNetworkMonitor != null) {
+            mNetworkMonitor.startMonitor();
+        }
     }
 
     private void initViews() {
@@ -94,9 +97,7 @@ public class MainActivity extends AppCompatActivity {
         //boot to launcher or TV, 0 is to launcher,1 is to TV
         SystemProperties.set("persist.sys.intvmode", "0");
         goToStorageSource();
-        if (mNetworkMonitor != null) {
-            mNetworkMonitor.startMonitor();
-        }
+
         initTopBars();
 
     }
@@ -104,9 +105,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (mNetworkMonitor != null) {
-            mNetworkMonitor.stopMonitor();
-        }
     }
 
     private void initInputSourceView() {

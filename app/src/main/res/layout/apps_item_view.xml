@@ -3,7 +3,6 @@
     android:id="@+id/item_layout"
     android:layout_width="match_parent"
     android:layout_height="140dp"
-    android:background="@drawable/bg_apps_item_selector"
     android:descendantFocusability="blocksDescendants"
     android:focusable="true"
     android:focusableInTouchMode="true"
