@@ -15,6 +15,7 @@ import com.cxel.launcher.R;
 import com.cxel.launcher.net.NetworkMonitor;
 import com.cxel.launcher.util.Constant;
 import com.cxel.launcher.util.ConstantResource;
+import com.cxel.launcher.util.LogUtils;
 
 
 /**
@@ -23,6 +24,7 @@ import com.cxel.launcher.util.ConstantResource;
  * 页面上方bar条
  */
 public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpdateListener {
+    private static final String TAG = TopBar.class.getSimpleName();
     private ImageView mUsbicon;
     private ImageView mNetworkIcon;
     private Context mContext;
@@ -70,7 +72,7 @@ public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpd
     public void onUpdateNetworkConnectivity(Bundle newConnectivity) {
         int mCurrentInterfaceId = newConnectivity.getInt(NetworkMonitor.KEY_NET_INTERFACE_ID, NetworkMonitor.ID_INTERFACE_ETHERNET);
         final int statusId = newConnectivity.getInt(NetworkMonitor.KEY_NET_STATUS_ID, NetworkMonitor.ID_STATUS_DISCONNECTED);
-        //Log.v(TAG, "mCurrentInterfaceId:" + mCurrentInterfaceId + " statusId:" + statusId);
+        LogUtils.v(TAG, "mCurrentInterfaceId:" + mCurrentInterfaceId + " statusId:" + statusId);
         switch (mCurrentInterfaceId) {
             case NetworkMonitor.ID_INTERFACE_ETHERNET:
                 switch (statusId) {
@@ -113,10 +115,10 @@ public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpd
         ConnectivityManager con = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean wifi = con.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
         boolean internet = con.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET).isConnectedOrConnecting();
-        if (!wifi && internet) {
+        if(internet) {
             mNetworkIcon.setImageResource(R.drawable.ic_eth_connected);
         } else {
-            mNetworkIcon.setImageResource(R.drawable.ic_wifi_disconnected);
+            mNetworkIcon.setImageResource(R.drawable.ic_eth_disconnected);
         }
     }
 
