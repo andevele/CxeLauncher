@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cxel.launcher.adapter.AllAppsAdapter;
+import com.cxel.launcher.base.BaseActivity;
 import com.cxel.launcher.control.ControlManager;
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.model.AppInfo;
@@ -28,7 +29,7 @@ import java.util.List;
  * andevele@163.com
  * 所有app页面
  */
-public class AppsActivity extends AppCompatActivity {
+public class AppsActivity extends BaseActivity {
     private List<AppInfo> appList;
     private AllAppsAdapter allAppsAdapter;
     private static final int spanCount = 4;
@@ -43,22 +44,10 @@ public class AppsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.apps_main);
-        initTopBars();
         initData();
         initView();
-        mNetworkMonitor.startMonitor();
-
-    }
-
-    private void initTopBars() {
-        topBar = (TopBar) findViewById(R.id.topbar_container);
-        mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
-        if(mNetworkMonitor == null) {
-            mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
-        }
-        mNetworkMonitor.checkUsb();
+        super.onCreate(savedInstanceState);
     }
 
     private void initData() {
@@ -101,8 +90,6 @@ public class AppsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        initTopBars();
         List<AppInfo> appInfoList = AppData.getInstance().getAppInfo();
         if (appInfoList == null || appInfoList.size() < 1) {
             appInfoList = AppData.getInstance().catchAppInfo();
@@ -128,6 +115,5 @@ public class AppsActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mNetworkMonitor.stopMonitor();
     }
 }

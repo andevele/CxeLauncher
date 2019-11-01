@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.os.SystemProperties;
 
 import com.cxel.launcher.adapter.InputSourceAdapter;
+import com.cxel.launcher.base.BaseActivity;
 import com.cxel.launcher.control.ControlManager;
 import com.cxel.launcher.data.DataAsyncTask;
 import com.cxel.launcher.net.NetworkMonitor;
@@ -37,7 +38,7 @@ import java.util.Map;
  * andevele@163.com
  * 主Activity
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private ViewGroup mainContainer;
 //    private BorderView border;
@@ -47,13 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initTopBars();
         initViews();
-        if (mNetworkMonitor != null) {
-            mNetworkMonitor.startMonitor();
-        }
+        super.onCreate(savedInstanceState);
     }
 
     private void initViews() {
@@ -82,24 +79,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initTopBars() {
-        topBar = (TopBar) findViewById(R.id.topbar_container);
-        mNetworkUpdateListener = (NetworkMonitor.INetworkUpdateListener) topBar;
-        if(mNetworkMonitor == null) {
-            mNetworkMonitor = new NetworkMonitor(this, mNetworkUpdateListener);
-        }
-        mNetworkMonitor.checkUsb();
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         //boot to launcher or TV, 0 is to launcher,1 is to TV
         SystemProperties.set("persist.sys.intvmode", "0");
         goToStorageSource();
-
-        initTopBars();
-
     }
 
     @Override
@@ -261,8 +246,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mNetworkMonitor != null) {
-            mNetworkMonitor.stopMonitor();
-        }
     }
 }

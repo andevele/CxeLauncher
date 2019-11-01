@@ -34,22 +34,26 @@ public class TopBar extends RelativeLayout implements NetworkMonitor.INetworkUpd
     }
 
     public TopBar(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.mContext = context;
-        LayoutInflater.from(context).inflate(R.layout.top_bar, this);
-        mNetworkIcon = (ImageView) findViewById(R.id.network_label);
-        mNetworkIcon.setFocusable(false);
-        mUsbicon = (ImageView) findViewById(R.id.usb_icon);
-        mUsbicon.setFocusable(false);
-        this.setFocusable(false);
-        initViews();
+        this(context, attrs,-1);
     }
 
     public TopBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.mContext = context;
+        initViews(context);
     }
 
-    private void initViews() {
+    private void initViews(Context context) {
+        LayoutInflater.from(context).inflate(R.layout.top_bar, this);
+        this.setFocusable(false);
+        mNetworkIcon = (ImageView) findViewById(R.id.network_label);
+        mNetworkIcon.setFocusable(false);
+        mUsbicon = (ImageView) findViewById(R.id.usb_icon);
+        mUsbicon.setFocusable(false);
+        checkNetWork();
+    }
+
+    private void checkNetWork() {
         ConnectivityManager connectivityManager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean isWifiOn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isAvailable();
         boolean wifiConnect = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnectedOrConnecting();
