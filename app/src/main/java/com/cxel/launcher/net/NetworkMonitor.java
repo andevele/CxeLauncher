@@ -100,6 +100,7 @@ public class NetworkMonitor extends BroadcastReceiver {
             if (mListener != null) {
                 mListener.onUpdateUSBConnectivity(action);
             }
+            return;
         }
 
         updateActiveNetwork();
