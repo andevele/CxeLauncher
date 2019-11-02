@@ -62,8 +62,6 @@ public class AppsActivity extends BaseActivity {
     }
 
     private void initView() {
-        TextView titleLabel = (TextView) findViewById(R.id.title_label_text);
-        titleLabel.setText(getResources().getString(R.string.apps_page));
 //        border = new BorderView(this);
         //border.setBackgroundResource(R.drawable.border_highlight);
 //        border.setBackgroundResource(R.drawable.custom_border);

@@ -54,8 +54,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initViews() {
-        TextView titleLabel = (TextView) findViewById(R.id.title_label_text);
-        titleLabel.setText(getResources().getString(R.string.home_page));
 //        border = new BorderView(this);
         //border.setBackgroundResource(R.drawable.border_highlight);
 //        border.setBackgroundResource(R.drawable.custom_border);
