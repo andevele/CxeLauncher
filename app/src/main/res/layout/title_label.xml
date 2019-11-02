@@ -8,7 +8,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/title_label_text"
+        android:id="@+id/page_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="96dp"

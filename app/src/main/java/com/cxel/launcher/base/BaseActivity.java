@@ -3,8 +3,6 @@ package com.cxel.launcher.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cxel.launcher.R;
@@ -35,15 +33,15 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         if(this.toString().contains("MainActivity")) {
-            updateView(R.string.home_page);
+            updateView(R.string.page_home);
         } else if(this.toString().contains("AppsActivity")) {
-            updateView(R.string.apps_page);
+            updateView(R.string.page_apps);
         }
         super.onResume();
     }
 
     private void updateView(int stringId) {
-        TextView pageLabel = (TextView) findViewById(R.id.title_label_text);
+        TextView pageLabel = (TextView) findViewById(R.id.page_title);
         pageLabel.setText(getResources().getString(stringId));
     }
 

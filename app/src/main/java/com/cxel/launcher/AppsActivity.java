@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.cxel.launcher.adapter.AllAppsAdapter;
 import com.cxel.launcher.base.BaseActivity;
 import com.cxel.launcher.control.ControlManager;
