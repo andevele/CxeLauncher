@@ -61,6 +61,9 @@ public class InputSourceAdapter extends RecyclerView.Adapter<InputSourceAdapter.
             case Constant.INPUT_SOURCE_NAME_AV2:
                 viewHolder.mSourceIcon.setImageResource(R.drawable.ic_av_2);
                 break;
+            case Constant.INPUT_SOURCE_NAME_HDMI:
+                viewHolder.mSourceIcon.setImageResource(R.drawable.ic_hdmi_1);
+                break;
             case Constant.INPUT_SOURCE_NAME_HDMI1:
                 viewHolder.mSourceIcon.setImageResource(R.drawable.ic_hdmi_1);
                 break;

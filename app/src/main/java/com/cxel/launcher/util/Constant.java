@@ -18,6 +18,7 @@ public class Constant {
     public static final String INPUT_SOURCE_NAME_DTV = "DTV";
     public static final String INPUT_SOURCE_NAME_AV1 = "AV1";
     public static final String INPUT_SOURCE_NAME_AV2 = "AV2";
+    public static final String INPUT_SOURCE_NAME_HDMI = "HDMI";
     public static final String INPUT_SOURCE_NAME_HDMI1 = "HDMI1";
     public static final String INPUT_SOURCE_NAME_HDMI2 = "HDMI2";
     public static final String INPUT_SOURCE_NAME_YPBPR1 = "YPBPR1";
