@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CxeLauncher</string>
+    <string name="home_page">บ้าน</string>
+    <string name="apps_page">ใบสมัคร</string>
+</resources>
