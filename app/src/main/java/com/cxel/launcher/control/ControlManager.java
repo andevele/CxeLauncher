@@ -51,6 +51,9 @@ public class ControlManager {
             case Constant.INPUT_SOURCE_NAME_AV2:
                 switchSource(TvCommonManager.INPUT_SOURCE_CVBS2);
                 break;
+            case Constant.INPUT_SOURCE_NAME_HDMI:
+                switchSource(TvCommonManager.INPUT_SOURCE_HDMI);
+                break;
             case Constant.INPUT_SOURCE_NAME_HDMI1:
                 switchSource(TvCommonManager.INPUT_SOURCE_HDMI);
                 break;
