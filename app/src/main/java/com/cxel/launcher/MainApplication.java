@@ -2,7 +2,6 @@ package com.cxel.launcher;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.cxel.launcher.data.AppData;
@@ -25,7 +24,7 @@ public class MainApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        MultiDex.install(this);
+//        MultiDex.install(this);
         context = getApplicationContext();
         DataAsyncTask dataAsyncTask = new DataAsyncTask();
         dataAsyncTask.setDataTask(new DataAsyncTask.DataTask() {
