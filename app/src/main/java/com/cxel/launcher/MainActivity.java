@@ -186,7 +186,7 @@ public class MainActivity extends BaseActivity {
     private void CreateSourceData(final RecyclerView recyclerView, final int layoutId) {
         List<String> data = new ArrayList<String>();
         List<String> list = new ArrayList<String>();
-        MainApplication application = (MainApplication) getApplication();
+        final MainApplication application = (MainApplication) getApplication();
         Map<String, List<String>> dataMap = application.getDataMap();
         List<String> dataList = dataMap.get(Constant.INPUT_SOURCE_SECTION);
         if (dataList == null || dataList.size() < 0) {
@@ -194,6 +194,7 @@ public class MainActivity extends BaseActivity {
             dataAsyncTask.setDataTask(new DataAsyncTask.DataTask() {
                 @Override
                 public void excuteSuccess(List<String> dataList) {
+                    application.setDataMap(dataList);
                     updateList(recyclerView, dataList, layoutId);
                 }
 

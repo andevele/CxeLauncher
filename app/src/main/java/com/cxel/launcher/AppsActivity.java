@@ -28,7 +28,6 @@ import java.util.List;
  * 所有app页面
  */
 public class AppsActivity extends BaseActivity {
-    private List<AppInfo> appList;
     private AllAppsAdapter allAppsAdapter;
     private static final int spanCount = 4;
     private GridLayoutManager gridLayoutManager;
@@ -49,12 +48,10 @@ public class AppsActivity extends BaseActivity {
     }
 
     private void initData() {
-        appList = new ArrayList<AppInfo>();
         List<AppInfo> appInfoList = AppData.getInstance().getAppInfo();
         if (appInfoList == null || appInfoList.size() < 1) {
             appInfoList = AppData.getInstance().catchAppInfo();
         }
-        appList = appInfoList;
         allAppsAdapter = new AllAppsAdapter(this, appInfoList);
         gridLayoutManager = new TvGridLayoutManagerScrolling(this, spanCount);
     }
@@ -86,11 +83,6 @@ public class AppsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        List<AppInfo> appInfoList = AppData.getInstance().getAppInfo();
-        if (appInfoList == null || appInfoList.size() < 1) {
-            appInfoList = AppData.getInstance().catchAppInfo();
-        }
-        allAppsAdapter.updateData(appInfoList);
     }
 
     @Override
