@@ -147,7 +147,8 @@ public class AppData {
             if (appInfos != null) {
                 appInfos.clear();
                 for (ResolveInfo resolveInfo : resolveInfos) {
-                    if (resolveInfo.activityInfo.packageName.equals("com.mstar.tv.tvplayer.ui")) {
+                    if (resolveInfo.activityInfo.packageName.equals("com.mstar.tv.tvplayer.ui")
+                        || resolveInfo.activityInfo.packageName.equals("com.android.inputmethod.latin")) {
                         continue;
                     }
                     AppInfo appInfo = new AppInfo();
