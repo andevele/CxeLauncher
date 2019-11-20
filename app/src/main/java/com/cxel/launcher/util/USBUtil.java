@@ -23,7 +23,7 @@ public class USBUtil {
         try {
             Class clz = StorageManager.class;
             Method getVolumeList = clz.getMethod("getVolumeList");
-            StorageVolume[] volumes = (StorageVolume[]) getVolumeList.invoke(storageManager, null);
+            StorageVolume[] volumes = (StorageVolume[]) getVolumeList.invoke(storageManager);
             for (int i = 0; i < volumes.length; i++) {
                 String element = volumes[i].toString();
                 if (element.contains("/mnt/usb") && element.contains("mounted")) {
