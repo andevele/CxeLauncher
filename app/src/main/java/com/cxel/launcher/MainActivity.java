@@ -122,7 +122,11 @@ public class MainActivity extends BaseActivity {
             } else if (view == mainContainer.getChildAt(Constant.APPS_INDEX)) {
                 startActivity("com.cxel.launcher.action.AllAppsAdapter");
             } else if (view.getId() == R.id.view_tvstore) {
-                launchApp("cm.aptoidetv.pt");
+                if (isAppInstalled(getApplicationContext(), "com.android.vending")){
+                    launchApp("com.android.vending");
+                }else{
+                    launchApp("cm.aptoidetv.pt");
+                }
             }
         }
     }
