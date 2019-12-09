@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">CxeLauncher</string>
-    <string name="home_page">主页</string>
-    <string name="apps_page">应用</string>
+    <string name="page_home">主页</string>
+    <string name="page_apps">应用</string>
 </resources>

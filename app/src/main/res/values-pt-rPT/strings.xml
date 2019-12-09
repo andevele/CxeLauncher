@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">CxeLauncher</string>
-    <string name="home_page">CASA</string>
-    <string name="apps_page">Aplicação</string>
+    <string name="page_home">CASA</string>
+    <string name="page_apps">Aplicação</string>
 </resources>
