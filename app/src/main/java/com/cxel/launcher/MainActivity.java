@@ -110,7 +110,8 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onClick(View view) {
             if (view == mainContainer.getChildAt(Constant.YOUTUBE_INDEX)) {
-                launchApp("com.google.android.youtube.tv");
+                //launchApp("com.google.android.youtube.tv");
+                launchApp("com.liskovsoft.videomanager");
             } else if (view == mainContainer.getChildAt(Constant.NETFLIX_INDEX)) {
                 launchApp("com.netflix.mediaclient");
             } else if (view == mainContainer.getChildAt(Constant.HOTSTAR_INDEX)) {
