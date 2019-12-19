@@ -48,7 +48,7 @@ public class ConstantResource {
 
     public static final int OP_NONE = 0;
     public static final int OP_ADD = 1;
-    public static final int OP_UPDATE = 2;
+    public static final int OP_CHANGED = 2;
     public static final int OP_REMOVE = 3; // uninstlled
     public static final int OP_UNAVAILABLE = 4; // external media unmounted
 }

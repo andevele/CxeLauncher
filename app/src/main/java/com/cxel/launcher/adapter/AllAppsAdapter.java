@@ -25,6 +25,7 @@ import com.cxel.launcher.model.AppInfo;
 import com.cxel.launcher.util.ColorUtil;
 import com.cxel.launcher.util.Constant;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -36,7 +37,7 @@ import java.util.Random;
 public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHolder> implements DataInterface.AppTaskCallBack {
 
     private View mView;
-    private List<AppInfo> mlist;
+    private List<AppInfo> mlist = new ArrayList<AppInfo>();;
     private Context mContext;
     private ViewHolder mVH;
     private OnItemClickListener listener;
@@ -44,7 +45,7 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
     private AppInfo appInfo = null;
 
     public AllAppsAdapter(Context context, List<AppInfo> list) {
-        this.mlist = list;
+        this.mlist.addAll(list);
         this.mContext = context;
         AppData.getInstance().setCallBack(this);
     }
@@ -170,21 +171,17 @@ public class AllAppsAdapter extends RecyclerView.Adapter<AllAppsAdapter.ViewHold
     }
 
     @Override
-    public void onAppInfoAdded(int size) {
-        this.notifyDataSetChanged();
-//        this.notifyItemInserted(size);
-        //((AppsActivity)mContext).updateViews();
+    public void onAppInfoAdded(List<AppInfo> list) {
+        mlist.clear();
+        mlist.addAll(list);
+        notifyDataSetChanged();
     }
 
     @Override
-    public void onAppInfoRemoved(int size) {
-        //this.notifyItemRemoved(size);
-        this.notifyDataSetChanged();
-    }
-
-    public void updateData(List<AppInfo> list) {
-        this.mlist = list;
-        //this.notifyDataSetChanged();
+    public void onAppInfoRemoved(List<AppInfo> list) {
+        mlist.clear();
+        mlist.addAll(list);
+        notifyDataSetChanged();
     }
 
     public interface OnItemClickListener {

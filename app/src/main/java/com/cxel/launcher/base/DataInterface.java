@@ -1,5 +1,9 @@
 package com.cxel.launcher.base;
 
+import com.cxel.launcher.model.AppInfo;
+
+import java.util.List;
+
 /**
  * zhulf 20190924
  * andevele@163.com
@@ -7,8 +11,8 @@ package com.cxel.launcher.base;
  */
 public class DataInterface {
     public interface AppTaskCallBack {
-        public void onAppInfoAdded(int size);
+        public void onAppInfoAdded(List<AppInfo> list);
 
-        public void onAppInfoRemoved(int size);
+        public void onAppInfoRemoved(List<AppInfo> list);
     }
 }

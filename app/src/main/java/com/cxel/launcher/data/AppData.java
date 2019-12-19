@@ -81,7 +81,7 @@ public class AppData {
                     addPackage(mContext, packages[i]);
                 }
                 break;
-            case ConstantResource.OP_UPDATE:
+            case ConstantResource.OP_CHANGED:
                 for (int i = 0; i < N; i++) {
                     //will be to do
                 }
@@ -115,7 +115,7 @@ public class AppData {
         }
         appInfoList.add(appInfo);
         Collections.sort(appInfoList,new AppInfo.AppComparator());
-        callBack.onAppInfoAdded(appInfoList.size());
+        callBack.onAppInfoAdded(appInfoList);
     }
 
     private void removePackage(String packageName) {
@@ -127,7 +127,7 @@ public class AppData {
                 appInfoList.remove(i);
             }
         }
-        callBack.onAppInfoRemoved(appInfoList.size());
+        callBack.onAppInfoRemoved(appInfoList);
     }
 
     public void setCallBack(AllAppsAdapter allAppsAdapter) {
