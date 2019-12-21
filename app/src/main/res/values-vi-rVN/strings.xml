@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CxeLauncher</string>
+    <string name="page_home">Trang chủ</string>
+    <string name="page_apps">Ứng dụng</string>
+</resources>
