@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.cxel.launcher.MainApplication;
 import com.cxel.launcher.R;
 import com.cxel.launcher.net.NetworkMonitor;
 import com.cxel.launcher.view.TopBar;
@@ -28,6 +29,7 @@ public class BaseActivity extends AppCompatActivity {
         mNetworkMonitor.startMonitor();
         mNetworkMonitor.checkUsb();
         super.onCreate(savedInstanceState);
+        MainApplication.addActivity(this);
     }
 
     @Override

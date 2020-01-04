@@ -1,13 +1,15 @@
 package com.cxel.launcher;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
+import android.content.res.Configuration;
 
 import com.cxel.launcher.data.AppData;
 import com.cxel.launcher.data.DataAsyncTask;
 import com.cxel.launcher.util.Constant;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,7 @@ import java.util.Map;
 public class MainApplication extends Application {
     Map<String, List<String>> dataMap = new HashMap<String, List<String>>();
     private static Context context = null;
+    private static List<Activity> activities = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -52,5 +55,17 @@ public class MainApplication extends Application {
 
     public static Context getContext() {
         return context;
+    }
+
+    public static void addActivity(Activity activity) {
+        activities.add(activity);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        for (int i = 0; i < activities.size(); i++) {
+            activities.get(i).finish();
+        }
     }
 }
