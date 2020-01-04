@@ -22,7 +22,7 @@ import java.util.Map;
 public class MainApplication extends Application {
     Map<String, List<String>> dataMap = new HashMap<String, List<String>>();
     private static Context context = null;
-    private static List<Activity> activities = new ArrayList<>();
+    private List<Activity> activities = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -57,15 +57,13 @@ public class MainApplication extends Application {
         return context;
     }
 
-    public static void addActivity(Activity activity) {
+    public void addActivity(Activity activity) {
         activities.add(activity);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        for (int i = 0; i < activities.size(); i++) {
-            activities.get(i).finish();
-        }
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 }

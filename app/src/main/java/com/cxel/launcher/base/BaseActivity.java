@@ -29,7 +29,7 @@ public class BaseActivity extends AppCompatActivity {
         mNetworkMonitor.startMonitor();
         mNetworkMonitor.checkUsb();
         super.onCreate(savedInstanceState);
-        MainApplication.addActivity(this);
+        ((MainApplication)(getApplication())).addActivity(this);
     }
 
     @Override
